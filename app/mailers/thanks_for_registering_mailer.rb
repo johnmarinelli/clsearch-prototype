@@ -1,5 +1,5 @@
 class ThanksForRegisteringMailer < ApplicationMailer
-  default from: ENV['MAILGUN_SMTP_LOGIN'] 
+  default from: "john.marinelli.dev@gmail.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
