@@ -93,7 +93,7 @@ Rails.application.configure do
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'immense-falls-2574.herokuapp.com'
+    :domain         => 'immense-falls-2574.herokuapp.com',
     :authentication => :plain,
   }
 end
