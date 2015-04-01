@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    a = ThanksForRegisteringMailer.thanks_for_registering.deliver
+    ThanksForRegisteringMailer.thanks_for_registering.deliver_now
   end
 end
