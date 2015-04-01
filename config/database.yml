@@ -22,10 +22,12 @@ default: &default
   pool: 5
   database: clsearch_prototype
   host: localhost
+  username: postgres
+  password: <%= ENV['CLSEARCH_PROTOTYPE_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
-  database: clsearch_prototype_development
+  database: clsearch_prototype
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
