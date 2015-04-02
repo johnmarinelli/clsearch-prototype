@@ -40,14 +40,14 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer_delivery_method = :smtp
   config.action_mailer.default_url_options = {
-    :host => ENV['MAILGUN_DOMAIN'],
+    :host => ENV['MAILGUN_SMTP_DOMAIN'],
     :port => 3000
   }
   config.action_mailer.smtp_settings = {
     :address => ENV['MAILGUN_ADDRESS'],
     :port => 587,
     :authentication => 'plain',
-    :domain => ENV['MAILGUN_DOMAIN'],
+    :domain => ENV['MAILGUN_SMTP_DOMAIN'],
     :user_name => ENV['MAILGUN_SMTP_LOGIN'],
     :password => ENV['MAILGUN_SMTP_PASSWORD']
   }

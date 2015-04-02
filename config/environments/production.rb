@@ -88,7 +88,7 @@ Rails.application.configure do
 #    :password => ENV['MAILGUN_SMTP_PASSWORD']
 #  }
   config.action_mailer.default_url_options = {
-    :host => ENV['MAILGUN_DOMAIN'],
+    :host => ENV['MAILGUN_SMTP_DOMAIN'],
     :port => 3000
   }
   config.action_mailer.smtp_settings = {
