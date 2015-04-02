@@ -89,7 +89,6 @@ Rails.application.configure do
 #  }
   config.action_mailer.default_url_options = {
     :host => ENV['MAILGUN_SMTP_DOMAIN'],
-    :port => 3000
   }
   config.action_mailer.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
