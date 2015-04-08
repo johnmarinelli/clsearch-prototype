@@ -6,9 +6,10 @@ class ThanksForRegisteringMailer < ApplicationMailer
   #
   #   en.thanks_for_registering_mailer.thanks_for_registering.subject
   #
-  def thanks_for_registering
+  def thanks_for_registering(user)
     @greeting = "Hi"
+    @user = user
 
-    mail to: "jonmarinelli@hotmail.com", subject: "fuck yea"
+    mail to: @user.email, subject: "fuck yea"
   end
 end

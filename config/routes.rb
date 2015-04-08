@@ -1,7 +1,24 @@
 Rails.application.routes.draw do
-  devise_for :users  
-  root 'home#index'
+  devise_for :users
+
+  # custom routes for devise.
+  # set default scope to :user.
+  devise_scope :user do
+    get '/login' => 'devise/sessions#new'
+    delete '/logout' => 'devise/sessions#destroy'
+  end
+
   resources :users, only: [:index, :show, :edit, :update]
+
+  resources :dashboard
+  authenticated :user do
+    root :to => 'dashboard#index'
+  end
+
+  # hackish way to circumvent https://github.com/plataformatec/devise/issues/2393
+  unauthenticated do
+    root :to => 'home#index', as: :unauthenticated_root
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
