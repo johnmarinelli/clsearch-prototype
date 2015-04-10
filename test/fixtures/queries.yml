@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  anchor: 
+  sources: 
+  categories: 
+  location: 
+  user_id: 1
+
+two:
+  anchor: 
+  sources: 
+  categories: 
+  location: 
+  user_id: 1
+
+three:
+  anchor: 
+  sources: 
+  categories: 
+  location: 
+  user_id: 2
