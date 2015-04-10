@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
          :confirmable
 
   has_many :queries
+
+  def has_queries?
+    queries.length > 0
+  end
 end

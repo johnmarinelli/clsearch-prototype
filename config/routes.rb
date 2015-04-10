@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'queries/create'
+  get 'queries/update'
+  get 'queries/destroy'
   devise_for :users
 
   # custom routes for devise.

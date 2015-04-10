@@ -1,2 +1,11 @@
 <h1> <%= @user.email %> </h1>
-<%= link_to('Sign out', logout_path, :method => :delete) %>
+
+<% if @user.has_queries? %>
+  <% @user.queries.each do |query| %>
+    <%= query.inspect %>
+  <% end %>
+<% else %>
+  <p>You have no queries saved!  Why don't you <% link_to 'create some?',  %></p>
+<% end %>
+
+<%= link_to 'Sign out', logout_path, :method => :delete %>
