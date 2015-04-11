@@ -1,0 +1,47 @@
+<h1>New Query</h1>
+
+<%= form_for :query, :html => { :class => 'pure-form pure-form-stacked' } do |f| %>
+  <!-- WHAT -->
+  <fieldset>
+    <legend>What?</legend>
+
+    <!-- keywords -->
+    <label for="keywords">Keywords</label>
+    <input id="keywords" name="keywords" type="text" placeholder="Keywords">
+
+    <!-- category -->
+    <label for="category">Category</label>
+    <select name="category">
+      <% @categories.each do |category| %>
+        <option><%= category %></option>
+      <% end %>
+    </select>
+  </fieldset>
+
+  <!-- WHERE -->
+  <fieldset>
+    <legend>Where?</legend>
+
+    <!-- city/zip code -->
+    <label for="location-primary">City or Zip Code</label>
+    <input id="location-primary" name="location-primary" type="text" placeholder="">
+
+    <!-- distance radius -->
+    <%= render 'templates/forms/queries/distance_select' %> 
+  </fieldset>
+  
+  <!-- HOW MUCH -->
+  <fieldset>
+    <legend>How much?</legend>
+
+    <!-- price min -->
+    <label for="price-min">From</label>
+    $<input type="number" step="1.00" min="0.00">
+
+    <!-- price max -->
+    <label for="price-max">To</label>
+    $<input type="number" step="1.00" min="0.00">
+  </fieldset>
+
+  <%= f.submit :class => 'pure-button pure-button-primary' %>
+<% end %>

@@ -5,7 +5,7 @@
     <%= query.inspect %>
   <% end %>
 <% else %>
-  <p>You have no queries saved!  Why don't you <% link_to 'create some?',  %></p>
+  <p>You have no queries saved!  Why don't you <%= link_to 'create some?', new_query_path %></p>
 <% end %>
 
 <%= link_to 'Sign out', logout_path, :method => :delete %>

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  get 'queries/create'
+  get 'queries/new'
   get 'queries/update'
   get 'queries/destroy'
+
+  post '/queries/new' => 'queries#create'
+
   devise_for :users
 
   # custom routes for devise.
@@ -12,13 +15,14 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :show, :edit, :update]
+  resources :queries
 
-  resources :dashboard
   authenticated :user do
     root :to => 'dashboard#index'
   end
 
   # hackish way to circumvent https://github.com/plataformatec/devise/issues/2393
+  # redirect unauthenticaated users to index
   unauthenticated do
     root :to => 'home#index', as: :unauthenticated_root
   end
