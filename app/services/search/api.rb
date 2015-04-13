@@ -93,4 +93,22 @@ module Search
       @parameters[:anchor] = anchor
     end
   end
+
+  class APIReference < API
+    def initialize(param, level = '')
+      super('reference')
+      # add parameter to reference to end of url
+      idx = @api_url.index('.com')
+      @api_url.insert(idx+4, '/' + param)
+
+      # only location parameter uses level right now (4/12/15)
+      @endpoint = append_get_vars(@api_url.clone, { 
+        :level => level
+      })
+    end
+
+    def search
+      open(@endpoint).read
+    end
+  end
 end

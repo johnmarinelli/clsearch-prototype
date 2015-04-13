@@ -13,7 +13,7 @@
     <label for="category">Category</label>
     <select name="category">
       <% @categories.each do |category| %>
-        <option><%= category %></option>
+        <option value="<%= category['code'] %>"><%= category['group_name'] + ' - ' + category['name'] %></option>
       <% end %>
     </select>
   </fieldset>
@@ -23,8 +23,8 @@
     <legend>Where?</legend>
 
     <!-- city/zip code -->
-    <label for="location-primary">City or Zip Code</label>
-    <input id="location-primary" name="location-primary" type="text" placeholder="">
+    <label for="location_primary">City or Zip Code</label>
+    <input id="location-primary" name="location_primary" type="text" placeholder="">
 
     <!-- distance radius -->
     <%= render 'templates/forms/queries/distance_select' %> 
@@ -35,12 +35,12 @@
     <legend>How much?</legend>
 
     <!-- price min -->
-    <label for="price-min">From</label>
-    $<input type="number" step="1.00" min="0.00">
+    <label for="price_min">From</label>
+    $<input type="number" name="price_min" step="1.00" min="0.00">
 
     <!-- price max -->
-    <label for="price-max">To</label>
-    $<input type="number" step="1.00" min="0.00">
+    <label for="price_max">To</label>
+    $<input type="number" name="price_max" step="1.00" min="0.00">
   </fieldset>
 
   <%= f.submit :class => 'pure-button pure-button-primary' %>
