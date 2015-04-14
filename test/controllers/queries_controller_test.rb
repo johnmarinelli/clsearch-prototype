@@ -1,19 +1,19 @@
 require 'test_helper'
 
 class QueriesControllerTest < ActionController::TestCase
-  test "should get create" do
-    get :create
+  test "should get new" do
+    get :new
     assert_response :success
   end
 
-  test "should get update" do
-    get :update
+  test "should get edit" do
+    get(:edit, { 'id' => queries(:first).id })
     assert_response :success
   end
 
   test "should get destroy" do
-    get :destroy
-    assert_response :success
+    delete(:destroy, {'id' => queries(:first).id })
+    assert_response :redirect
   end
 
 end

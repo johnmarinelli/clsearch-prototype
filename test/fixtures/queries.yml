@@ -1,21 +1,33 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+first:
+  id: 1
   anchor: 
+  keywords: 
+  price_min: 
+  price_max: 
   sources: 
   categories: 
   location: 
   user_id: 1
 
-two:
+second:
+  id: 2
   anchor: 
+  keywords: 
+  price_min: 
+  price_max: 
   sources: 
   categories: 
   location: 
   user_id: 1
 
-three:
+third:
+  id: 3
   anchor: 
+  keywords: 
+  price_min: 
+  price_max: 
   sources: 
   categories: 
   location: 
