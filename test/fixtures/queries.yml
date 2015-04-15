@@ -7,18 +7,18 @@ first:
   price_min: 
   price_max: 
   sources: 
-  categories: 
+  category: 
   location: 
   user_id: 1
 
 second:
   id: 2
-  anchor: 
+  anchor: 123456789
   keywords: 
-  price_min: 
-  price_max: 
+  price_min: 0
+  price_max: 100
   sources: 
-  categories: 
+  category: 'APET'
   location: 
   user_id: 1
 
@@ -29,6 +29,6 @@ third:
   price_min: 
   price_max: 
   sources: 
-  categories: 
+  category: 
   location: 
   user_id: 2

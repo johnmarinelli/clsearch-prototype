@@ -14,4 +14,15 @@ class User < ActiveRecord::Base
   def has_queries?
     queries.length > 0
   end
+  
+  def do_scheduled_query
+    queries = self.queries
+    tts = Search::APISearch.new
+
+    queries.each do |q|
+      tts.set_params q
+      data = JSON.parse tts.search
+      QueryMailer.query_mail(self, data).deliver
+    end
+  end
 end

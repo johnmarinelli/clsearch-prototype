@@ -25,22 +25,23 @@ class QueriesController < ApplicationController
     price_min = params[:price_min]
     price_max = params[:price_max]
 
-    query = Query.new({
+    params = Search::Parameters.new({
       :anchor => 0,
       :sources => { :sources => '' },
       :keywords => { :keywords => keywords },
-      :categories => { :category => category },
+      :category => category,
       :location => {
         :city => primary_location,
         :radius => radius
       }.to_json,
       :price_min => price_min,
       :price_max => price_max,
-
-      :user_id => current_user.id
     })
 
+    query = Query.new params.params
+    query[:user_id] = current_user.id
     query.save
+
     redirect_to '/'
   end
 

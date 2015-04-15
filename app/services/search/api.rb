@@ -30,25 +30,8 @@ module Search
 
     def initialize(sub)
       @auth_token = Search::Api_key
-
-      @parameters = {
-        :category => nil,
-        :category_group => nil,
-
-#        :location => {
-#          :zipcode => nil,
-#          :city => nil,
-#          :state => nil,
-#          :country => nil,
-#          :everywhere => false
-#        },
-
-        :price_min => nil,
-        :price_max => nil,
-
-        :begin_date => nil,
-        :end_date => nil
-      }
+      
+      @parameters = Search::Parameters.new
 
       @api_url = "http://" + sub + ".3taps.com?"
       append_get_vars @api_url, {'auth_token' => @auth_token}
@@ -59,7 +42,7 @@ module Search
     end
 
     def set_params(params)
-      @parameters.merge! params
+      @parameters.set_parameters params
     end
   end
 
@@ -70,7 +53,7 @@ module Search
     end
 
     def search
-      @endpoint = append_get_vars @api_url.clone, @parameters
+      @endpoint = append_get_vars @api_url.clone, @parameters.params
       open(@endpoint).read
     end
   end
@@ -90,7 +73,7 @@ module Search
     end
 
     def set_anchor(anchor)
-      @parameters[:anchor] = anchor
+      @parameters.set_parameter(:anchor, anchor)
     end
   end
 
