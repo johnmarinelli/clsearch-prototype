@@ -1,18 +1,9 @@
 class QueriesController < ApplicationController
   def new
-    categories_ref = Search::APIReference.new 'categories'
-    
-    # get a json string of 3taps' categories, USA zip codes
-    @categories = categories_ref.search
-
-    # parse json
-    @categories = JSON.parse @categories
-
-    # retrieve categories
-    @categories = @categories['categories']
+    @categories = get_categories
   end
 
-  def create
+  def construct_parameters_from_input(params)
     # what
     keywords = params[:keywords]
     category = params[:category]
@@ -38,20 +29,45 @@ class QueriesController < ApplicationController
       :price_max => price_max,
     })
 
-    query = Query.new params.params
+    params.params
+  end
+
+  def create
+    query = Query.new construct_parameters_from_input(params)
     query[:user_id] = current_user.id
     query.save
 
     redirect_to '/'
   end
 
+  def show
+  end
+
   def edit
+    @query = Query.find(params[:id])
+    @categories = get_categories
+    @method = :patch
   end
 
   def update
+    @query = Query.find(params[:id])
+    
+    if @query.update(query_params)
+      redirect_to '/'
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @query = Query.find(params[:id])
+    @query.destroy
+
     redirect_to '/'
+  end
+
+  private
+  def query_params
+    construct_parameters_from_input(params)
   end
 end

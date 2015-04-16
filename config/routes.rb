@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get 'queries/show'
   get 'queries/new'
-  get 'queries/update'
-  get 'queries/destroy'
 
   post '/queries/new' => 'queries#create'
+  patch '/queries/:id/edit' => 'queries#update'
+  resources :queries
 
   devise_for :users
 
@@ -15,7 +16,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :show, :edit, :update]
-  resources :queries
 
   authenticated :user do
     root :to => 'dashboard#index'

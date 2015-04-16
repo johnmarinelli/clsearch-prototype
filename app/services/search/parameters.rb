@@ -27,7 +27,7 @@ module Search
     end
     
     def set_parameters(params)
-      params.symbolize_keys!
+      params = params.symbolize_keys
       params.each do |k, v|
         set_parameter k, v
       end

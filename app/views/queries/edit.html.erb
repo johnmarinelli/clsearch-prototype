@@ -1,1 +1,13 @@
 <h1>Edit query</h1>
+
+  <% if @query.errors.any? %>
+    <div id="errors">
+      <h2><%= pluralize(@query.errors.count, 'error') %> prohibited this query from being saved:</h2>
+      <ul>
+        <% @query.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= render 'templates/forms/queries/query_form' %>

@@ -17,6 +17,21 @@ def append_get_vars(url, args)
   url
 end
 
+def get_categories
+  categories_ref = Search::APIReference.new 'categories'
+  
+  # get a json string of 3taps' categories, USA zip codes
+  @categories = categories_ref.search
+
+  # parse json
+  @categories = JSON.parse @categories
+
+  # retrieve categories
+  @categories = @categories['categories']
+
+  @categories
+end
+
 module Search
   Api_key = ENV['API_KEY']
 
