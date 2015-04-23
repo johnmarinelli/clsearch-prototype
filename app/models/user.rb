@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     tts = Search::APISearch.new
 
     queries.each do |q|
-      tts.set_params q
+      tts.set_params q.attributes
       data = JSON.parse tts.search
       QueryMailer.query_mail(self, data).deliver
     end

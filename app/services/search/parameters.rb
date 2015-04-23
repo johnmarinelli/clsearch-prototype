@@ -6,6 +6,7 @@ module Search
       @params = {
         :anchor => 0,
         :sources => nil,
+        :title =>nil,
         :keywords => nil,
         :category => nil, 
         :location => nil, 

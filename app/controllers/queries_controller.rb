@@ -5,6 +5,7 @@ class QueriesController < ApplicationController
 
   def construct_parameters_from_input(params)
     # what
+    title = params[:title]
     keywords = params[:keywords]
     category = params[:category]
 
@@ -18,6 +19,7 @@ class QueriesController < ApplicationController
 
     params = Search::Parameters.new({
       :anchor => 0,
+      :title => title,
       :sources => { :sources => '' },
       :keywords => { :keywords => keywords },
       :category => category,
