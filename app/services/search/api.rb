@@ -6,10 +6,31 @@ def append_get_vars(url, args)
     url[-1, 1] << '?'
   end
 
+  # do some preprocessing on the parameters
+  price_string = ''
+  if not args[:price_min].nil?
+    price_string += (args[:price_min].to_s + '..')
+  end
+  if not args[:price_max].nil?
+    price_string += args[:price_max].to_s
+  end
+  if not price_string.empty?
+    args[:price] = price_string
+  end
+
+  args.delete :price_min
+  args.delete :price_max
+
   args.each do |k, v|
-    # TODO
-    # find way to recursively dive into a hash and build a url
-    if not k.instance_of? Hash
+    case v
+    when Array
+      url << '&' << k.to_s << '=' << v.join('|')
+    when Hash
+      v.each do |hk, hv|
+        get_key = k.to_s + '.' + hk.to_s
+        url << '&' << get_key << '=' << hv.to_s
+      end
+    else
       url << '&' << k.to_s << '=' << v.to_s
     end
   end

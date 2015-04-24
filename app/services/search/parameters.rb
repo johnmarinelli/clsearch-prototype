@@ -6,12 +6,13 @@ module Search
       @params = {
         :anchor => 0,
         :sources => nil,
-        :title =>nil,
+#        :title => nil,
         :keywords => nil,
         :category => nil, 
-        :location => nil, 
-        :price_min => 0, 
-        :price_max => 0, 
+        :location => nil,
+        :price_min => 0,
+        :price_max => 0,
+        :radius => 0
       }
 
       if not params.nil? 

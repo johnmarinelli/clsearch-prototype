@@ -3,35 +3,38 @@
 first:
   id: 1
   anchor: 
-  keywords: '{"keywords":"one, key"}'
-  price_min: 1 
-  price_max: 100 
+  keywords: '["one", "key"]'
+  price_min: 1
+  price_max: 100
   sources: 
   category: 'CVOL' 
-  location: '{"city":92808}' 
+  location: '{"zipcode":92808}' 
+  radius: 10
   user_id: 1
 
 second:
   id: 2
   anchor: 123456789
-  keywords: '{"keywords":"one, key"}'
-  price_min: 2 
+  keywords: '["second","key"]'
+  price_min: 2
   price_max: 200
   sources: 
   category: 'APET'
   location: '{"city":91707}'
   user_id: 1,
+  radius: 10
   title: 'title'
 
 third:
   id: 3
   anchor: 
-  keywords: '{"keywords":"one, key"}'
+  keywords: '["three","key"]'
   price_min: 3
   price_max: 300
   sources: 
   category: 'APET'
   location: '{"city":12345}'
+  radius: 10
   user_id: 2
 
 fourth:
@@ -42,5 +45,6 @@ fourth:
   price_max: 400
   sources: '["CRAIG", "AUTOC"]'
   category: 'APET'
-  location: '{"city": 12345, "radius": 10}'
+  location: '{"city": 12345}'
+  radius: 10
   user_id: 4 

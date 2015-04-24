@@ -33,7 +33,7 @@ class QueryTest < ActiveSupport::TestCase
     tts.set_params query.attributes
     endpoint = append_get_vars tts.api_url, tts.parameters.params
 
-    target = "http://search.3taps.com?&auth_token="+ENV['API_KEY']+"&anchor=123456789&sources=CRAIG|AUTO&keywords=abc|def&category=APET&location.city=12345&radius=10&price=4..400"
-    assert target == endpoint, 'Endpoint not formed correctly.'
+    target = "http://search.3taps.com?&auth_token="+ENV['API_KEY']+"&anchor=123456789&sources=CRAIG|AUTOC&keywords=abc|def&category=APET&location.city=12345&radius=10&price=4..400"
+    assert target == endpoint, 'Endpoint not formed correctly. ACTUAL >> ' + endpoint + '    EXPECTED >> ' + target
   end
 end

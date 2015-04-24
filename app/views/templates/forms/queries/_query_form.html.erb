@@ -11,7 +11,7 @@
     <!-- keywords -->
     <label for="keywords">Keywords</label>
     <input id="keywords" name="keywords" type="text" placeholder="Keywords"
-     value="<%= @query.nil? ? '' : @query.keywords['keywords'] %>">
+     value="<%= @query.nil? ? '' : @query.keywords.join(', ') %>">
 
     <!-- category -->
     <label for="category">Category</label>

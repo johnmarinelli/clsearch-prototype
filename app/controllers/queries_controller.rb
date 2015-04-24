@@ -6,7 +6,9 @@ class QueriesController < ApplicationController
   def construct_parameters_from_input(params)
     # what
     title = params[:title]
-    keywords = params[:keywords]
+
+    # assume keywords is a comma-separated list
+    keywords = params[:keywords].delete(' ').split(',')
     category = params[:category]
 
     # location
@@ -20,15 +22,15 @@ class QueriesController < ApplicationController
     params = Search::Parameters.new({
       :anchor => 0,
       :title => title,
-      :sources => { :sources => '' },
-      :keywords => { :keywords => keywords },
+      :sources => Array([]),
+      :keywords => Array(keywords),
       :category => category,
       :location => {
         :city => primary_location,
-        :radius => radius
       }.to_json,
       :price_min => price_min,
       :price_max => price_max,
+      :radius => radius
     })
 
     params.params
