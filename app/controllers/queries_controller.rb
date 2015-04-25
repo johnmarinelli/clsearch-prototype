@@ -19,7 +19,7 @@ class QueriesController < ApplicationController
     price_min = params[:price_min]
     price_max = params[:price_max]
 
-    params = Search::Parameters.new({
+    query_params = {
       :anchor => 0,
       :title => title,
       :sources => Array([]),
@@ -31,9 +31,7 @@ class QueriesController < ApplicationController
       :price_min => price_min,
       :price_max => price_max,
       :radius => radius
-    })
-
-    params.params
+    }
   end
 
   def create
