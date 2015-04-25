@@ -21,7 +21,8 @@ class QueryTest < ActiveSupport::TestCase
       :location => { 'city' => 91707 },
       :user_id => 1,
       :created_at => nil,
-      :updated_at => nil
+      :updated_at => nil,
+      :last_searched => Time.now
     }
     #TODO
     #assert target == query.attributes.symbolize_keys, 'Query hash was not created correctly from Parameters object: ' + query.attributes.symbolize_keys.inspect + '\n' + target.inspect
@@ -33,7 +34,13 @@ class QueryTest < ActiveSupport::TestCase
     tts.set_params query.attributes
     endpoint = append_get_vars tts.api_url, tts.parameters.params
 
-    target = "http://search.3taps.com?&auth_token="+ENV['API_KEY']+"&anchor=123456789&sources=CRAIG|AUTOC&keywords=abc|def&category=APET&location.city=12345&radius=10&price=4..400"
-    assert target == endpoint, 'Endpoint not formed correctly. ACTUAL >> ' + endpoint + '    EXPECTED >> ' + target
+    url_has_get_param_with_value 'auth_token', ENV['API_KEY'], endpoint
+    url_has_get_param_with_value 'anchor', '123456789', endpoint
+    url_has_get_param_with_value 'sources', 'CRAIG|AUTOC', endpoint
+    url_has_get_param_with_value 'keywords', 'abc|def', endpoint
+    url_has_get_param_with_value 'category', 'APET', endpoint
+    url_has_get_param_with_value 'location.city', '12345', endpoint
+    url_has_get_param_with_value 'radius', '10', endpoint 
+    url_has_get_param_with_value 'price', '4..400', endpoint
   end
 end

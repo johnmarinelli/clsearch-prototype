@@ -7,32 +7,34 @@ def append_get_vars(url, args)
   end
 
   # do some preprocessing on the parameters
-  price_string = ''
-  if not args[:price_min].nil?
-    price_string += (args[:price_min].to_s + '..')
-  end
-  if not args[:price_max].nil?
-    price_string += args[:price_max].to_s
-  end
-  if not price_string.empty?
-    args[:price] = price_string
-  end
+ # price_string = ''
+ # if not args[:price_min].nil?
+ #   price_string += (args[:price_min].to_s + '..')
+ # end
+ # if not args[:price_max].nil?
+ #   price_string += args[:price_max].to_s
+ # end
+ # if not price_string.empty?
+ #   args[:price] = price_string
+ # end
 
-  args.delete :price_min
-  args.delete :price_max
+ # args.delete :price_min
+ # args.delete :price_max
 
   args.each do |k, v|
     case v
     when Array
-      url << '&' << k.to_s << '=' << v.join('|')
+      url << k.to_s << '=' << v.join('|')
     when Hash
       v.each do |hk, hv|
         get_key = k.to_s + '.' + hk.to_s
-        url << '&' << get_key << '=' << hv.to_s
+        url << get_key << '=' << hv.to_s
       end
     else
-      url << '&' << k.to_s << '=' << v.to_s
+      url << k.to_s << '=' << v.to_s
     end
+
+    url << '&'
   end
 
   url
@@ -69,7 +71,7 @@ module Search
       
       @parameters = Search::Parameters.new
 
-      @api_url = "http://" + sub + ".3taps.com?"
+      @api_url = "http://#{sub}.3taps.com?"
       append_get_vars @api_url, {'auth_token' => @auth_token}
     end
 
@@ -90,7 +92,7 @@ module Search
 
     def search
       @endpoint = append_get_vars @api_url.clone, @parameters.params
-      open(@endpoint).read
+      open(URI.encode @endpoint).read
     end
   end
 
@@ -99,7 +101,7 @@ module Search
     def initialize(anchor=nil)
       super('polling')
 
-      if nil != anchor
+      if not anchor.nil?
         append_get_vars @api_url, { :anchor => anchor }
       end
 
@@ -110,6 +112,10 @@ module Search
 
     def set_anchor(anchor)
       @parameters.set_parameter(:anchor, anchor)
+    end
+
+    def self.get_anchor
+      JSON.parse(open("http://polling.3taps.com/poll?auth_token=#{ENV['API_KEY']}").read)['anchor']
     end
   end
 

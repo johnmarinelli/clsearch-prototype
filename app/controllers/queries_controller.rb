@@ -19,8 +19,17 @@ class QueriesController < ApplicationController
     price_min = params[:price_min]
     price_max = params[:price_max]
 
+    # anchor
+    # TODO: handle timeout errors
+    begin
+      anchor = Search::APIPoll.get_anchor
+    rescue SocketError
+      Logger.fatal 'Timeout when retrieving anchor'
+      anchor = nil
+    end
+
     query_params = {
-      :anchor => 0,
+      :anchor => anchor,
       :title => title,
       :sources => Array([]),
       :keywords => Array(keywords),
@@ -30,7 +39,8 @@ class QueriesController < ApplicationController
       }.to_json,
       :price_min => price_min,
       :price_max => price_max,
-      :radius => radius
+      :radius => radius,
+      :last_searched => Time.now
     }
   end
 
