@@ -6,25 +6,10 @@ def append_get_vars(url, args)
     url[-1, 1] << '?'
   end
 
-  # do some preprocessing on the parameters
- # price_string = ''
- # if not args[:price_min].nil?
- #   price_string += (args[:price_min].to_s + '..')
- # end
- # if not args[:price_max].nil?
- #   price_string += args[:price_max].to_s
- # end
- # if not price_string.empty?
- #   args[:price] = price_string
- # end
-
- # args.delete :price_min
- # args.delete :price_max
-
   args.each do |k, v|
     case v
     when Array
-      url << k.to_s << '=' << v.join('|')
+      url << k.to_s << '=' << (k == :heading ? v.join(' ') : v.join('|'))
     when Hash
       v.each do |hk, hv|
         get_key = k.to_s + '.' + hk.to_s
@@ -40,19 +25,17 @@ def append_get_vars(url, args)
   url
 end
 
-def get_categories
-  categories_ref = Search::APIReference.new 'categories'
+def get_category_groups
+  categories_ref = Search::APIReference.new 'category_groups'
   
-  # get a json string of 3taps' categories, USA zip codes
-  @categories = categories_ref.search
+  # get a json string of 3taps' category_groups, USA zip codes
+  @category_groups = categories_ref.search
 
   # parse json
-  @categories = JSON.parse @categories
+  @category_groups = JSON.parse @category_groups
 
-  # retrieve categories
-  @categories = @categories['categories']
-
-  @categories
+  # retrieve category_groups
+  @category_groups = @category_groups['category_groups']
 end
 
 module Search

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425202724) do
+ActiveRecord::Schema.define(version: 20150426001704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,18 +30,18 @@ ActiveRecord::Schema.define(version: 20150425202724) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "queries", force: :cascade do |t|
-    t.integer  "anchor",             limit: 8
+    t.integer  "anchor",         limit: 8
     t.json     "sources"
-    t.string   "category"
+    t.string   "category_group"
     t.json     "location"
     t.integer  "user_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "price_min"
     t.integer  "price_max"
-    t.json     "keywords"
+    t.json     "heading"
     t.string   "title"
-    t.integer  "frequency_in_hours",           default: 24
+    t.string   "frequency",                default: "24"
     t.string   "radius"
     t.datetime "last_searched"
   end

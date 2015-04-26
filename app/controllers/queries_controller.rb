@@ -1,47 +1,6 @@
 class QueriesController < ApplicationController
   def new
-    @categories = get_categories
-  end
-
-  def construct_parameters_from_input(params)
-    # what
-    title = params[:title]
-
-    # assume keywords is a comma-separated list
-    keywords = params[:keywords].delete(' ').split(',')
-    category = params[:category]
-
-    # location
-    primary_location = params[:location_primary]
-    radius = params[:radius]
-
-    # price
-    price_min = params[:price_min]
-    price_max = params[:price_max]
-
-    # anchor
-    # TODO: handle timeout errors
-    begin
-      anchor = Search::APIPoll.get_anchor
-    rescue SocketError
-      Logger.fatal 'Timeout when retrieving anchor'
-      anchor = nil
-    end
-
-    query_params = {
-      :anchor => anchor,
-      :title => title,
-      :sources => Array([]),
-      :keywords => Array(keywords),
-      :category => category,
-      :location => {
-        :city => primary_location,
-      }.to_json,
-      :price_min => price_min,
-      :price_max => price_max,
-      :radius => radius,
-      :last_searched => Time.now
-    }
+    @categories = get_category_groups
   end
 
   def create
@@ -57,7 +16,7 @@ class QueriesController < ApplicationController
 
   def edit
     @query = Query.find(params[:id])
-    @categories = get_categories
+    @category_groups = get_category_groups
     @method = :patch
   end
 
@@ -81,5 +40,50 @@ class QueriesController < ApplicationController
   private
   def query_params
     construct_parameters_from_input(params)
+  end
+
+  def construct_parameters_from_input(params)
+    # what
+    title = params[:title]
+
+    # assume keywords is a comma-separated list
+    keywords = params[:keywords].delete(' ').split(',')
+    category_group = params[:category]
+
+    # location
+    primary_location = params[:location_primary]
+    radius = params[:radius]
+
+    # price
+    price_min = params[:price_min]
+    price_max = params[:price_max]
+
+    # frequency
+    frequency = params[:frequency]
+
+    # anchor
+    # TODO: handle timeout errors
+    begin
+      anchor = Search::APIPoll.get_anchor
+    rescue SocketError
+      Logger.fatal 'Timeout when retrieving anchor'
+      anchor = nil
+    end
+
+    query_params = {
+      :anchor => anchor,
+      :title => title,
+      :sources => Array([]),
+      :heading => Array(keywords),
+      :category_group => category_group,
+      :location => {
+        :city => primary_location,
+      }.to_json,
+      :price_min => price_min,
+      :price_max => price_max,
+      :frequency => frequency,
+      :radius => radius,
+      :last_searched => Time.now
+    }
   end
 end

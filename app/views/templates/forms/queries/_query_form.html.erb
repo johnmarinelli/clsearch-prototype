@@ -11,15 +11,15 @@
     <!-- keywords -->
     <label for="keywords">Keywords</label>
     <input id="keywords" name="keywords" type="text" placeholder="Keywords"
-     value="<%= @query.nil? ? '' : @query.keywords.join(', ') %>">
+     value="<%= @query.nil? ? '' : @query.heading.join(', ') %>">
 
     <!-- category -->
     <label for="category">Category</label>
     <select name="category" autocomplete="off">
-      <% @categories.each do |category| %>
-        <option value="<%= category['code'] %>"
-         <%= @query.nil? ? '' : @query.category == category['code'] ? 'selected=selected' : ''  %>>
-           <%= category['group_name'] + ' - ' + category['name'] %>
+      <% @category_groups.each do |group| %>
+        <option value="<%= group['code'] %>"
+         <%= @query.nil? ? '' : @query.category_group == group['code'] ? 'selected=selected' : ''  %>>
+           <%= group['name'] %>
         </option>
       <% end %>
     </select>
@@ -51,6 +51,21 @@
     <label for="price_max">To</label>
     $<input type="number" name="price_max" step="1.00" min="0.00"
       value="<%= @query.nil? ? '' : @query.price_max %>">
+  </fieldset>
+
+  <!-- HOW OFTEN -->
+  <fieldset>
+    <label for="frequency">I'd like my updates delivered...</label>
+    <input type="radio" name="frequency" value="daily" id="daily_frequency"
+     <%= @query.nil? ? '' : @query.frequency == 'daily' ? 'checked=checked' : ''  %>
+    >
+      <label for="daily_frequency">Daily</label>
+    </input>
+    <input type="radio" name="frequency" value="weekly" id="weekly_frequency"
+     <%= @query.nil? ? '' : @query.frequency == 'weekly' ? 'checked=checked' : ''  %>
+    >
+      <label for="weekly_frequency">Weekly</label>
+    </input>
   </fieldset>
 
   <%= f.submit :class => 'pure-button pure-button-primary' %>

@@ -1,6 +1,6 @@
 module Search
   class Parameters
-    @@special_keys = [:price_min, :price_max, :created_at]
+    @@special_keys = [:price_min, :price_max, :last_searched]
 
     attr_reader :params
 
@@ -8,8 +8,8 @@ module Search
       @params = {
         :anchor => 0,
         :sources => nil,
-        :keywords => nil,
-        :category => nil, 
+        :heading => nil,
+        :category_group => nil, 
         :location => nil,
         :price => nil,
         :radius => 0,
@@ -52,6 +52,7 @@ module Search
       # price special key
       if not key.to_s[/price/].nil?
         construct_price_string value, key
+      # last searched special key
       elsif not key.to_s[/last_searched/].nil?
         construct_timestamp_string value
       end
@@ -76,7 +77,7 @@ module Search
 
     # constructs 'n..' from :search_anchor
     def construct_timestamp_string(value)
-      @params[:timestamp] = "#{value}.."
+      @params[:timestamp] = "#{value.to_i}.."
     end
   end
 end

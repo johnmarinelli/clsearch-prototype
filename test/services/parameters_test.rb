@@ -5,8 +5,6 @@ class QueryTest < ActiveSupport::TestCase
     params = Search::Parameters.new({
       :anchor => 0,
       :sources => { :sources => '' },
-      :keywords => { :keywords => 'key, words' },
-      :category => 'APET',
       :location => {
         :city => 'san francisco',
         :radius => 5
@@ -21,8 +19,6 @@ class QueryTest < ActiveSupport::TestCase
     params = Search::Parameters.new({
       :anchor => 0,
       :sources => { :sources => '' },
-      :keywords => { :keywords => 'key, words' },
-      :category => 'APET',
       :location => {
         :city => 'san francisco',
         :radius => 5
@@ -37,8 +33,6 @@ class QueryTest < ActiveSupport::TestCase
     params = Search::Parameters.new({
       :anchor => 0,
       :sources => { :sources => '' },
-      :keywords => { :keywords => 'key, words' },
-      :category => 'APET',
       :location => {
         :city => 'san francisco',
         :radius => 5
@@ -54,8 +48,6 @@ class QueryTest < ActiveSupport::TestCase
     params = Search::Parameters.new({
       :anchor => 0,
       :sources => { :sources => '' },
-      :keywords => { :keywords => 'key, words' },
-      :category => 'APET',
       :location => {
         :city => 'san francisco',
         :radius => 5
