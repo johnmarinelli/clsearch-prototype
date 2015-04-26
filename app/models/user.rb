@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   
   def do_scheduled_query
     queries = self.queries
-    tts = Search::APIPoll.new
+    tts = Search::APISearch.new
 
     queries.each do |q|
       if q.anchor.nil?
@@ -25,10 +25,9 @@ class User < ActiveRecord::Base
         # retrieve an anchor value. 
       end
       
-      tts.set_anchor q.anchor
       tts.set_params q.attributes
       data = JSON.parse tts.search
-      QueryMailer.query_mail(self, data).deliver
+      QueryMailer.query_mail(self, data).deliver_later
       q.last_searched = Time.now
     end
   end

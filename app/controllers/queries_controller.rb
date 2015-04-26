@@ -51,7 +51,14 @@ class QueriesController < ApplicationController
     category_group = params[:category]
 
     # location
-    primary_location = params[:location_primary]
+    primary_location = params[:location_primary].strip
+    
+    if primary_location.match(/^\d{5}$/).nil? 
+      city = CityReference.find_city primary_location 
+    else
+      zipcode = ZipcodeReference.find_zipcode primary_location 
+    end
+
     radius = params[:radius]
 
     # price
@@ -63,21 +70,22 @@ class QueriesController < ApplicationController
 
     # anchor
     # TODO: handle timeout errors
-    begin
-      anchor = Search::APIPoll.get_anchor
-    rescue SocketError
-      Logger.fatal 'Timeout when retrieving anchor'
-      anchor = nil
-    end
+    #begin
+    #  anchor = Search::APIPoll.get_anchor
+    #rescue SocketError
+    #  Logger.fatal 'Timeout when retrieving anchor'
+    #  anchor = nil
+    #end
 
     query_params = {
-      :anchor => anchor,
+      :anchor => nil,
       :title => title,
       :sources => Array([]),
       :heading => Array(keywords),
       :category_group => category_group,
       :location => {
-        :city => primary_location,
+        :city => city || nil,
+        :zipcode => zipcode || nil
       }.to_json,
       :price_min => price_min,
       :price_max => price_max,

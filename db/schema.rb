@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426001704) do
+ActiveRecord::Schema.define(version: 20150426213105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "city_references", force: :cascade do |t|
+    t.string   "code"
+    t.string   "full_name"
+    t.string   "short_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "city_references", ["full_name"], name: "index_city_references_on_full_name", using: :btree
+  add_index "city_references", ["short_name"], name: "index_city_references_on_short_name", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -73,6 +84,17 @@ ActiveRecord::Schema.define(version: 20150426001704) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
+
+  create_table "zipcode_references", force: :cascade do |t|
+    t.string   "code"
+    t.string   "full_name"
+    t.string   "short_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "zipcode_references", ["full_name"], name: "index_zipcode_references_on_full_name", using: :btree
+  add_index "zipcode_references", ["short_name"], name: "index_zipcode_references_on_short_name", using: :btree
 
   add_foreign_key "queries", "users"
 end
