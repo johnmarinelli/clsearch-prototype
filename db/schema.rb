@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426213105) do
+ActiveRecord::Schema.define(version: 20150429235343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150426213105) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "city_references", ["code"], name: "index_city_references_on_code", using: :btree
   add_index "city_references", ["full_name"], name: "index_city_references_on_full_name", using: :btree
   add_index "city_references", ["short_name"], name: "index_city_references_on_short_name", using: :btree
 
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150426213105) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "zipcode_references", ["code"], name: "index_zipcode_references_on_code", using: :btree
   add_index "zipcode_references", ["full_name"], name: "index_zipcode_references_on_full_name", using: :btree
   add_index "zipcode_references", ["short_name"], name: "index_zipcode_references_on_short_name", using: :btree
 

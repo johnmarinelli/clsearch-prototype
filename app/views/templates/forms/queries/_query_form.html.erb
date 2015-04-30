@@ -32,7 +32,7 @@
     <!-- city/zip code -->
     <label for="location_primary">City or Zip Code</label>
     <input id="location-primary" name="location_primary" type="text" placeholder=""
-     value="<%= @query.nil? ? '' : @query.location['city'] %>">
+     value="<%= @query.nil? ? '' : Reference::LocationReference.get_short_name_from_location_code(@query.location['zipcode']) %>">
 
     <!-- distance radius -->
     <%= render 'templates/forms/queries/distance_select' %> 
