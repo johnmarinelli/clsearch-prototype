@@ -49,3 +49,10 @@ gem 'rails_12factor', group: :production
 ruby '2.1.2'
 gem 'devise'
 gem 'friendly_id', '~> 5.1.0', :require => "friendly_id"
+
+group :test do
+  gem 'capybara'
+  gem 'cucumber'
+  gem 'rspec'
+  gem 'selenium-webdriver'
+end
