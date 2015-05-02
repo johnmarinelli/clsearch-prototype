@@ -1,7 +1,11 @@
+require 'capybara'
+
 module Common
+  @@session = Capybara::Session.new(:selenium)
+
   class Actions
     def go_to_home
-      visit '/'
+      @@session.visit 'http://localhost:3000'
     end
   end
 end
