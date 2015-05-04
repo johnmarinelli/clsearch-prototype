@@ -6,14 +6,15 @@ module Search
 
     def initialize(params=nil)
       @params = {
-        :anchor => 0,
+        :anchor => nil,
         :sources => nil,
         :heading => nil,
         :category_group => nil, 
         :location => nil,
         :price => nil,
         :radius => 0,
-        :timestamp => nil
+        :timestamp => nil,
+        :retvals => 'id,source,category,location,external_url,heading,timestamp,expires,body,price,images'
       }
 
       if not params.nil? 

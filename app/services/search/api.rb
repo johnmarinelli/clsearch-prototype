@@ -75,6 +75,7 @@ module Search
 
     def search
       @endpoint = append_get_vars @api_url.clone, @parameters.params
+      puts @endpoint
       open(URI.encode @endpoint).read
     end
   end

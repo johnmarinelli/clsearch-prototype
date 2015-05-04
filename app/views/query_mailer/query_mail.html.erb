@@ -5,6 +5,10 @@
   </head>
 
   <body>
-    <%= @json %>
+    <% @posts.each do |post| %>
+      <h3><%= post[:heading] %></h3>
+      <div class="location"><%= post[:location] %></div>
+      <div class="price"><%= number_to_currency post[:price] %></div>
+    <% end %>
   </body>
 </html>
