@@ -52,8 +52,9 @@ gem 'friendly_id', '~> 5.1.0', :require => "friendly_id"
 
 group :test do
   gem 'capybara'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'rspec'
+  gem 'rspec-expectations'
   gem 'selenium-webdriver'
 end

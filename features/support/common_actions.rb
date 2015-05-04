@@ -9,13 +9,21 @@ module Common
     def go_to_page(url)
       if url[0] != '/'
         url.prepend '/'
-      Common::session.visit url 
+      end
+      Common::session.visit url
     end
 
     def direct_pages(page)
       case page
       when 'HOME'
         go_to_home
+      end
+    end
+
+    def click_on(target)
+      case target
+      when 'LOGIN'
+        Common::session.visit '/login'
       end
     end
   end

@@ -59,3 +59,5 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
+
+Capybara.default_selector = :css
