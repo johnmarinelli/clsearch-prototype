@@ -10,12 +10,13 @@ class QueryMailer < ApplicationMailer
     posts = []
 
     json['postings'].each do |post|
-      # TODO: img = post['images'][0]['full']
+      # LOL VVV
+      img = post['images'].nil? ? nil : post['images'][0].nil? ? nil : post['images'][0]['full']
       heading = post['heading']
-      location = post['formatted_address'] or CityReference.find_city_by_code post['location']['city'] or ZipcodeReference.find_zipcode_by_code post['location']['zipcode']
+      location = (post['formatted_address'] or CityReference.find_city_by_code post['location']['city'] or ZipcodeReference.find_zipcode_by_code post['location']['zipcode']) 
       price = post['price'] || 'N/A'
 
-      posts << { :heading => heading, :location => location, :price => price }
+      posts << { :img => img, :heading => heading, :location => location, :price => price }
     end
 
     posts

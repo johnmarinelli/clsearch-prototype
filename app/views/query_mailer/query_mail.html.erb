@@ -6,9 +6,15 @@
 
   <body>
     <% @posts.each do |post| %>
-      <h3><%= post[:heading] %></h3>
-      <div class="location"><%= post[:location] %></div>
-      <div class="price"><%= number_to_currency post[:price] %></div>
+      <div class="email-post">
+        <h3><%= post[:heading] %></h3>
+        <% unless post[:img].nil? %>
+          <img src="<%= post[:img] %>" />
+        <% end %>
+        <div class="location"><%= post[:location] %></div>
+        <div class="price"><%= number_to_currency post[:price] %></div>
+        <hr/>
+      </div>
     <% end %>
   </body>
 </html>
