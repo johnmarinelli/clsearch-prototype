@@ -15,8 +15,10 @@ class QueryMailer < ApplicationMailer
       heading = post['heading']
       location = (post['formatted_address'] or CityReference.find_city_by_code post['location']['city'] or ZipcodeReference.find_zipcode_by_code post['location']['zipcode']) 
       price = post['price'] || 'N/A'
+      body = post['body'] || 'No description found'
+      url = post['external_url']
 
-      posts << { :img => img, :heading => heading, :location => location, :price => price }
+      posts << { :img => img, :heading => heading, :location => location, :price => price, :body => body, :url => url }
     end
 
     posts
