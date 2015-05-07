@@ -4,16 +4,11 @@ module Login
   include Common
 
   class LoginActions < Common::Actions
-    def login(email='test@example.com', password='password')
-      user = User.new({ :email => email, :password => password })
-      user.skip_confirmation!
-      user.save!
-
-      puts user.inspect
-
+    def login(email='test@email.com', password='password')
       Login::session.find(:css, '#user_email').set email
       Login::session.find(:css, '#user_password').set password
       Login::session.click_button 'Log in'
+      
     end
 
     def logout

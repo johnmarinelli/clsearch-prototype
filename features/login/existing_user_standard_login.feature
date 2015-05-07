@@ -10,5 +10,5 @@ Feature: Existing user login
     When she clicks on LOGIN
     And she fills out the login form with the following information
      #| Email            | Password |
-      | test@example.com | password |
+      | test@email.com | password |
     Then she sees her DASHBOARD
