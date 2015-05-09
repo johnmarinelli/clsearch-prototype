@@ -5,13 +5,9 @@ module Login
 
   class LoginActions < Common::Actions
     def login(email='test@email.com', password='password')
-      Login::session.find(:css, '#user_email').set email
-      Login::session.find(:css, '#user_password').set password
-      Login::session.click_button 'Log in'
-      
-    end
-
-    def logout
+      Common::session.find(:css, '#user_email').set email
+      Common::session.find(:css, '#user_password').set password
+      Common::session.click_button 'Log in'
     end
     
     def fill_in_login_form(credentials)
@@ -22,17 +18,10 @@ module Login
     end
   end
 
-  @@session = Capybara::Session.new(:selenium)
-  Capybara.app_host = 'http://localhost:3000'
-
-  def self.session
-    @@session
-  end
-
-  @@actions = LoginActions.new
+  @@login_actions = LoginActions.new
 
   def self.actions
-    @@actions
+    @@login_actions
   end
 end
 

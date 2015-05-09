@@ -8,7 +8,7 @@ Feature: Existing user login
 
   Scenario: User logs in
     When she clicks on LOGIN
-    And she fills out the login form with the following information
-     #| Email            | Password |
+    Then she fills out the login form with the following information
+     #| Email          | Password |
       | test@email.com | password |
-    Then she sees her DASHBOARD
+    And she sees her DASHBOARD

@@ -22,9 +22,27 @@ module Common
 
     def click_on(target)
       case target
-      when 'LOGIN'
+      when /login/i
         Common::session.visit '/login'
+      when /register/i
+        Common::session.visit '/users/sign_up'
+      else 
+        puts "Couldn\'t find click_on #{target}"
       end
+    end
+
+    def fill_in_form(form, creds)
+      case form
+      when /registration/i
+        Registration::actions.fill_in_registration_form creds
+      when /login/i
+        Login::actions.fill_in_login_form creds
+      else 
+        puts "Couldn\'t find fill_in_form#{target}"
+      end
+    end
+
+    def logout
     end
   end
 
