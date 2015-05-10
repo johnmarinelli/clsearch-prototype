@@ -1,3 +1,4 @@
+@wip
 Feature: New user registration
   As the product owner
   I want the new user registration process to be simple.

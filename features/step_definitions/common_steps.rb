@@ -1,4 +1,4 @@
-Given(/^she is on the ([^"]*) page$/) do |page|
+Given(/^(?:she|the user) is on (?:her|the) ([^"]*) page?$/) do |page|
   Common::actions.direct_pages page
 end
 

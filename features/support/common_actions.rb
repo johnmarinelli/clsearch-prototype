@@ -3,6 +3,7 @@ require 'capybara'
 module Common
   class Actions
     include Devise::TestHelpers 
+    include Warden::Test::Helpers
 
     def go_to_home
       Common::session.visit '/'
@@ -17,7 +18,10 @@ module Common
 
     def direct_pages(page)
       case page
-      when 'HOME'
+      when /home/i 
+        go_to_home
+      when /dashboard/i
+        login_as(User.find_by(email: 'test@email.com'), :scope => :user)
         go_to_home
       end
     end
@@ -28,6 +32,8 @@ module Common
         Common::session.visit '/login'
       when /register/i
         Common::session.visit '/users/sign_up'
+      when /new query/i
+        Common::session.visit '/queries/new'
       else 
         puts "Couldn\'t find click_on #{target}"
       end
