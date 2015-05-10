@@ -15,7 +15,7 @@
 
     <!-- category -->
     <label for="category">Category</label>
-    <select name="category" autocomplete="off">
+    <select name="category" autocomplete="off" id="category">
       <% @category_groups.each do |group| %>
         <option value="<%= group['code'] %>"
          <%= @query.nil? ? '' : @query.category_group == group['code'] ? 'selected=selected' : ''  %>>
@@ -44,12 +44,12 @@
 
     <!-- price min -->
     <label for="price_min">From</label>
-    $<input type="number" name="price_min" step="1.00" min="0.00"
+    $<input type="number" name="price_min" step="1.00" min="0.00" id="price_min"
       value="<%= @query.nil? ? '' : @query.price_min %>">
 
     <!-- price max -->
     <label for="price_max">To</label>
-    $<input type="number" name="price_max" step="1.00" min="0.00"
+    $<input type="number" name="price_max" step="1.00" min="0.00" id="price_max"
       value="<%= @query.nil? ? '' : @query.price_max %>">
   </fieldset>
 
