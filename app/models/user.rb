@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, 
          :confirmable
 
-  has_many :queries
+  has_many :queries, dependent: :destroy
 
   def has_queries?
     queries.length > 0

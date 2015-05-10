@@ -8,6 +8,8 @@
 one:
   id: 1
   email: test@email.com
+  encrypted_password: <%= Devise.bcrypt(User, 'password') %>
+  confirmed_at: <%= Time.now %>
 
 two:
   id: 2
@@ -16,3 +18,4 @@ two:
 three:
   id: 3
   email: test3@email.com
+
