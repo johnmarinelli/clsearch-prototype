@@ -9,6 +9,6 @@ Feature: Existing user login
   Scenario: User logs in
     When she clicks on LOGIN
     Then she fills out the login form with the following information
-     #| Email          | Password |
-      | test@email.com | password |
+      | Email    | test@email.com  |
+      | Password | password        |
     And she sees her DASHBOARD

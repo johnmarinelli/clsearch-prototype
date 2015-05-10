@@ -14,7 +14,7 @@ When(/^she fills out the (registration|login) form with the following informatio
   Common::actions.fill_in_form form, creds
 end
 
-Given(/^that the user (is|is not) logged in$/) do |logged_in|
+Given(/^that (?:she|the user) (is|is not) logged in$/) do |logged_in|
   if logged_in == 'is not'
     Common::actions.logout
   end

@@ -5,6 +5,7 @@ module Registration
 
   class RegistrationActions < Common::Actions
     def register(email, password='password')
+      delete_user_if_exists email
       Common::session.find(:css, '#user_email').set email
       Common::session.find(:css, '#user_password').set password
       Common::session.find(:css, '#user_password_confirmation').set password
@@ -12,8 +13,26 @@ module Registration
     end
 
     def fill_in_registration_form(credentials)
-      # TODO: get values from cucumber ast table
-      register 'test4@email.com'
+      rows = credentials.rows_hash
+      email = rows['Email']
+      password = rows['Password']
+
+      register email, password
+    end
+
+    def confirm_last_registration
+      User.last.confirm!
+      User.last.confirmed_at = Time.now
+      User.last.save!
+    end
+
+    private
+    def delete_user_if_exists(email)
+      exists = User.find_by email: email
+
+      unless exists.nil?
+        exists.destroy
+      end
     end
   end
 

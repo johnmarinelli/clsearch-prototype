@@ -2,6 +2,8 @@ require 'capybara'
 
 module Common
   class Actions
+    include Devise::TestHelpers 
+
     def go_to_home
       Common::session.visit '/'
     end
@@ -43,6 +45,11 @@ module Common
     end
 
     def logout
+      Common::session.visit '/'
+      begin
+        Common::session.click_on 'Sign out'
+      rescue
+      end
     end
   end
 
