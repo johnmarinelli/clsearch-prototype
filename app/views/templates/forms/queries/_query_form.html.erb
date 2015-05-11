@@ -1,5 +1,15 @@
 
 <%= form_for :query, :html => { :class => 'pure-form pure-form-stacked' }, method: (@method.nil? ? :post : @method) do |f| %>
+  <% if @query.errors.any? %>
+    <div id="error-explanation">
+      <ul>
+        <% @query.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end unless @query.nil? %>
+
   <!-- WHAT -->
   <fieldset>
     <legend>What?</legend>
@@ -31,8 +41,25 @@
 
     <!-- city/zip code -->
     <label for="location_primary">City or Zip Code</label>
+
+    <!-- TODO: check for @query.location['city'] as well -->
     <input id="location-primary" name="location_primary" type="text" placeholder=""
-     value="<%= @query.nil? ? '' : Reference::LocationReference.get_short_name_from_location_code(@query.location['zipcode']) %>">
+    value="<%= @query.nil? ? '' : Reference::LocationReference.get_short_name_from_location_code(@query.location['zipcode']) %>">
+
+    <script>
+    $('#location-primary').focusout(function() { 
+      var text = $(this).val();
+      $.ajax({
+        url: '/validate_location',
+        data: { location_input: text },
+        method: 'get'
+      }).done(function(error) {
+          if ('none' !== error) {
+            alert(error);
+          }
+        })
+    })
+    </script>
 
     <!-- distance radius -->
     <%= render 'templates/forms/queries/distance_select' %> 
