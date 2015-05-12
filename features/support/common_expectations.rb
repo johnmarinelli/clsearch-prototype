@@ -16,6 +16,13 @@ module Common
         Common::session.has_button? 'Save Query', disabled: true
       end
     end
+
+    def element_has_disabled_status(element, status)
+      case element
+      when /save button/i
+        Common::session.has_button? 'Save Query', disabled: status
+      end
+    end
   end
 
   @@expectations = Expectations.new

@@ -31,7 +31,7 @@ When(/^(.*) for frequency of delivery$/) do |frequency|
 end
 
 When(/^she submits the query$/) do
-  #Queries::actions.submit_query
+  Queries::actions.submit_query
 end
 
 Then(/^she will get an error message saying (.*)$/) do |error|

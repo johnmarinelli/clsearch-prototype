@@ -7,7 +7,11 @@ When(/^she clicks on ([^"]*)$/) do |clicked_on|
 end
 
 When(/^the (.*) is disabled$/) do |element|
-  Common::expectations.element_is_disabled element
+  Common::expectations.element_has_disabled_status element, true
+end
+
+When(/^the (.*) is enabled$/) do |element|
+  Common::expectations.element_has_disabled_status element, false
 end
 
 Then(/^she sees her ([^"]*)$/) do |page|

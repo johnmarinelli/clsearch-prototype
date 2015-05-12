@@ -21,8 +21,12 @@ module Common
       when /home/i 
         go_to_home
       when /dashboard/i
-        login_as(User.find_by(email: 'test@email.com'), :scope => :user)
-        go_to_home
+        if Common::session.has_content? 'Login'
+          go_to_page 'login'
+          Login::actions.login
+        else
+          go_to_home
+        end
       end
     end
 
