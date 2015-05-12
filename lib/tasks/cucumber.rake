@@ -40,6 +40,22 @@ begin
       ::STATS_DIRECTORIES << %w(Cucumber\ features features) if File.exist?('features')
       ::CodeStatistics::TEST_TYPES << "Cucumber features" if File.exist?('features')
     end
+
+    desc "Run single feature"
+    task single_feature: :environment do
+      file = ENV['file']
+      line = ''
+      File.readlines(file).each do |l|
+        line = l if l[/Feature:/]
+
+        unless line.empty?
+          line = line.split('Feature: ')[1].strip!
+          break
+        end
+      end
+      cmd = "cucumber --name \"#{line}\""
+      exec cmd
+    end
   end
   desc 'Alias for cucumber:ok'
   task :cucumber => 'cucumber:ok'
@@ -60,6 +76,7 @@ rescue LoadError
   task :cucumber do
     abort 'Cucumber rake task is not available. Be sure to install cucumber as a gem or plugin'
   end
+
 end
 
 end

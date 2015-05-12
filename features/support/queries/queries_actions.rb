@@ -39,6 +39,14 @@ module Queries
     def submit_query
       Common::session.click_on 'Save Query'
     end
+
+    def click_on(target)
+      case target
+      when /delete query/i
+        Common::session.first('a').click
+        sleep 5
+      end
+    end
   end
 
   @@query_actions = QueryActions.new

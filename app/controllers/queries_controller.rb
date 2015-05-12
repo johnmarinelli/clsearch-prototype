@@ -43,11 +43,11 @@ class QueriesController < ApplicationController
 
     if primary_location.match(/^\d{5}$/).nil? 
       city = CityReference.find_city primary_location 
-      error = 'bad city' if city.nil?
     else
       zipcode = ZipcodeReference.find_zipcode primary_location 
-      error = 'bad zip' if zipcode.nil?
     end
+
+    error = 'bad city' if city.nil? and zipcode.nil?
 
     render text: error
   end

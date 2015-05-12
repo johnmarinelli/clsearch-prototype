@@ -45,6 +45,9 @@
     <!-- TODO: check for @query.location['city'] as well -->
     <input id="location-primary" name="location_primary" type="text" placeholder=""
     value="<%= @query.nil? ? '' : Reference::LocationReference.get_short_name_from_location_code(@query.location['zipcode']) %>">
+    <!-- distance radius -->
+    <%= render 'templates/forms/queries/distance_select' %> 
+    <div id="location-primary-error"></div>
 
     <script>
     $('#location-primary').focusout(function() { 
@@ -54,15 +57,20 @@
         data: { location_input: text },
         method: 'get'
       }).done(function(error) {
+          var errorText = '',
+          submitDisabled = true;
           if ('none' !== error) {
-            alert(error);
+            errorText = error;
           }
+          else {
+            submitDisabled = false;
+          }
+          $('#location-primary-error').html(errorText); 
+          $('input[name="commit"]').prop('disabled', submitDisabled)
         })
     })
     </script>
 
-    <!-- distance radius -->
-    <%= render 'templates/forms/queries/distance_select' %> 
   </fieldset>
   
   <!-- HOW MUCH -->
@@ -95,5 +103,7 @@
     </input>
   </fieldset>
 
-  <%= f.submit :class => 'pure-button pure-button-primary' %>
+  <%= f.submit :class => 'pure-button pure-button-primary', 
+    data: { disable_with: 'Saving...' }, 
+    :disabled => @query.nil? %>
 <% end %>

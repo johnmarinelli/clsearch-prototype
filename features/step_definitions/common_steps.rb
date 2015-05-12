@@ -6,6 +6,10 @@ When(/^she clicks on ([^"]*)$/) do |clicked_on|
   Common::actions.click_on clicked_on
 end
 
+When(/^the (.*) is disabled$/) do |element|
+  Common::expectations.element_is_disabled element
+end
+
 Then(/^she sees her ([^"]*)$/) do |page|
   Common::expectations.sees_page? page
 end

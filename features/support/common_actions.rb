@@ -34,6 +34,8 @@ module Common
         Common::session.visit '/users/sign_up'
       when /new query/i
         Common::session.visit '/queries/new'
+      when /delete query/i
+        Queries::actions.click_on target
       else 
         puts "Couldn\'t find click_on #{target}"
       end

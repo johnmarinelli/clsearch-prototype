@@ -9,6 +9,13 @@ module Common
         raise Exception unless Common::session.has_content? 'Signed in successfully.'
       end
     end
+
+    def element_is_disabled(element)
+      case element
+      when /save button/i
+        Common::session.has_button? 'Save Query', disabled: true
+      end
+    end
   end
 
   @@expectations = Expectations.new
