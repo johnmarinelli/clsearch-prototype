@@ -4,7 +4,7 @@ class QueriesController < ApplicationController
   end
 
   def create
-    query = Query.new(Query.construct_parameters_from_input(params))
+    query = Query.new(Search::Parameters.construct_parameters_from_input(params))
     query[:user_id] = current_user.id
     query.save
 
