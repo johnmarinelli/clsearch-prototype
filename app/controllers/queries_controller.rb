@@ -54,6 +54,6 @@ class QueriesController < ApplicationController
 
   private
   def query_params
-    Query.construct_parameters_from_input(params)
+    Search::Parameters.construct_parameters_from_input(params)
   end
 end

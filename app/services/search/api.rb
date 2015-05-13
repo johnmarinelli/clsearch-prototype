@@ -9,11 +9,14 @@ def append_get_vars(url, args)
   args.each do |k, v|
     case v
     when Array
-      url << k.to_s << '=' << (k == :heading ? v.join(' ') : v.join('|'))
+      # TODO: should the keywords be AND'd or OR'd?
+      # url << k.to_s << '=' << (k == :heading ? v.join(' ') : v.join('|')) <-- AND'd
+      url << k.to_s << '=' << v.join('|') # <-- OR'd
     when Hash
       v.each do |hk, hv|
         get_key = k.to_s + '.' + hk.to_s
         url << get_key << '=' << hv.to_s
+        url << '&'
       end
     else
       url << k.to_s << '=' << v.to_s

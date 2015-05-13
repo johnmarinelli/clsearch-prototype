@@ -20,11 +20,6 @@ class User < ActiveRecord::Base
     tts = Search::APISearch.new
 
     queries.each do |q|
-      if q.anchor.nil?
-        # TODO:
-        # retrieve an anchor value. 
-      end
-      
       tts.set_params q.attributes
       data = JSON.parse tts.search
       QueryMailer.query_mail(self, data).deliver_later
