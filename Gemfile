@@ -44,6 +44,7 @@ group :development, :test do
 end
 
 gem 'figaro'
+gem 'whenever'
 
 gem 'rails_12factor', group: :production
 ruby '2.1.2'
