@@ -15,7 +15,7 @@ Feature: Create a new query
     And <Frequency> for frequency of delivery
     Then the SAVE BUTTON is enabled
     When she submits the query
-    Then she is on the DASHBOARD page
+    Then her query count increases by one
     Examples:
       | Title | Keywords | Category | City or zip code | Radius | Price min | Price max | Frequency | 
       | q1    | a, b     | Animals  | 92808            | 5      | 0         | 100       | Daily     |

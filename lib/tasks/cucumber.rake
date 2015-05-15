@@ -43,6 +43,7 @@ begin
 
     desc "Run single feature"
     task single_feature: :environment do
+      `rake temp:delete_last_user RAILS_ENV=test`
       file = ENV['file']
       line = ''
       File.readlines(file).each do |l|

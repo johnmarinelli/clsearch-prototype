@@ -36,6 +36,8 @@ module Common
         Common::session.visit '/login'
       when /register/i
         Common::session.visit '/users/sign_up'
+      when /sign up/i
+        Common::session.click_button 'Sign up'
       when /new query/i
         Common::session.visit '/queries/new'
       when /delete query/i

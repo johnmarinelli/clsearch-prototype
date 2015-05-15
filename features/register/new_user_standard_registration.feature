@@ -1,4 +1,3 @@
-@wip
 Feature: New user registration
   As the product owner
   I want the new user registration process to be simple.
@@ -13,10 +12,5 @@ Feature: New user registration
     Then she fills out the registration form with the following information
       | Email    | test4@email.com |
       | Password | password        |
-    And she sees the HOME page with a message confirming her subscription
-    When she confirms her registration
-    Then she clicks on LOGIN
-    And she fills out the login form with the following information
-      | Email    | test4@email.com |
-      | Password | password        |
-    And she sees her DASHBOARD
+    When she clicks on SIGN UP
+    Then she sees her DASHBOARD
