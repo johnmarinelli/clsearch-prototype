@@ -4,11 +4,14 @@ class QueriesController < ApplicationController
   end
 
   def create
-    query = Query.new(Search::Parameters.construct_parameters_from_input(params))
-    query[:user_id] = current_user.id
-    query.save
-
-    redirect_to '/'
+    @query = Query.new(Search::Parameters.construct_parameters_from_input(params))
+    @query[:user_id] = current_user.id
+    if @query.save
+      redirect_to '/'
+    else
+      @categories = get_category_groups
+      render 'new'
+    end
   end
 
   def show

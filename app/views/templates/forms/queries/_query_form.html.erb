@@ -47,7 +47,7 @@
     value="<%= @query.nil? ? '' : Reference::LocationReference.get_short_name_from_location_code(@query.location['zipcode']) %>">
     <!-- distance radius -->
     <%= render 'templates/forms/queries/distance_select' %> 
-    <div id="location-primary-error"></div>
+    <div class="input-error" id="location-primary-error"></div>
 
     <script>
     $('#location-primary').focusout(function() { 
@@ -101,6 +101,7 @@
     >
       <label for="weekly_frequency">Weekly</label>
     </input>
+    <div class="input-error"><%= @query.nil? ? '' : @query.errors[:frequency][0] %></div>
   </fieldset>
 
   <%= f.submit :class => 'pure-button pure-button-primary', 
