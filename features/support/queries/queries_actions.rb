@@ -55,7 +55,7 @@ module Queries
     end
 
     def submit_query
-      q = Query.new @query_params
+      q = Query.create @query_params
       raise Exception 'Query parameters not formed correctly' unless q.valid?
     end
 
