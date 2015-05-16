@@ -28,19 +28,6 @@ def append_get_vars(url, args)
   url
 end
 
-def get_category_groups
-  categories_ref = Search::APIReference.new 'category_groups'
-  
-  # get a json string of 3taps' category_groups, USA zip codes
-  @category_groups = categories_ref.search
-
-  # parse json
-  @category_groups = JSON.parse @category_groups
-
-  # retrieve category_groups
-  @category_groups = @category_groups['category_groups']
-end
-
 module Search
   Api_key = ENV['API_KEY']
 

@@ -36,7 +36,44 @@ class QueriesControllerTest < ActionController::TestCase
       }
     end
 
-    assert_redirected_to :controller => 'user', :action => 'show'
+    assert_redirected_to :controller => 'dashboard', :action => 'index'
   end
 
+  test "no title should display a validation error" do
+    post :create, {
+      :title => '',
+      :keywords => 'kw1, kw2, kw3',
+      :category => 'BBBB',
+      :location_primary => '0xdeadbeef',
+      :frequency => 'daily'
+    }
+
+    assert_select '#error-explanation'
+  end
+
+
+  test "no category should display a validation error" do
+    post :create, {
+      :title => 'title',
+      :keywords => 'kw1, kw2, kw3',
+      :category => '',
+      :location_primary => '0xdeadbeef',
+      :frequency => 'daily'
+    }
+
+    assert_select '#error-explanation'
+  end
+
+
+  test "no frequency should display a validation error" do
+    post :create, {
+      :title => 'title',
+      :keywords => 'kw1, kw2, kw3',
+      :category => 'category',
+      :location_primary => '0xdeadbeef',
+      :frequency => ''
+    }
+
+    assert_select '#error-explanation'
+  end
 end

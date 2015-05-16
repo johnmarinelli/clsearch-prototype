@@ -1,6 +1,7 @@
 class QueriesController < ApplicationController
+  before_action :set_category_groups, only: [:new, :create, :edit, :update]
+  
   def new
-    @categories = get_category_groups
   end
 
   def create
@@ -9,7 +10,6 @@ class QueriesController < ApplicationController
     if @query.save
       redirect_to '/'
     else
-      @categories = get_category_groups
       render 'new'
     end
   end
@@ -19,16 +19,16 @@ class QueriesController < ApplicationController
 
   def edit
     @query = Query.find(params[:id])
-    @category_groups = get_category_groups
     @method = :patch
   end
 
   def update
     @query = Query.find(params[:id])
-    
+
     if @query.update(query_params)
       redirect_to '/'
     else
+      @method = :patch
       render 'edit'
     end
   end
@@ -59,4 +59,9 @@ class QueriesController < ApplicationController
   def query_params
     Search::Parameters.construct_parameters_from_input(params)
   end
+
+  def set_category_groups
+    @category_groups = CategoryGroupReference.all
+  end
+
 end

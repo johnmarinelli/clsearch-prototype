@@ -25,4 +25,16 @@ namespace :api_reference do
     end
   end
 
+
+  desc "Queries API's categories and stores results in database"
+  task pull_categories: :environment do
+    CategoryGroupReference.delete_all
+    reference = Search::APIReference.new 'category_groups'
+    category_groups = JSON.parse reference.search
+
+    category_groups['category_groups'].each do |c|
+      category_group_reference = CategoryGroupReference.new c
+      category_group_reference.save
+    end
+  end
 end
