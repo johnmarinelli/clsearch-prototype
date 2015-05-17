@@ -6,6 +6,14 @@ class QueriesController < ApplicationController
 
   def create
     @query = Query.new(Search::Parameters.construct_parameters_from_input(params))
+
+    valid = quickndirtyvalidatelocation(params[:location_input])
+
+    unless valid
+      @query.errors[:location] = 'bad bad city'
+      render 'new'
+    end
+
     @query[:user_id] = current_user.id
     if @query.save
       redirect_to '/'
@@ -38,6 +46,18 @@ class QueriesController < ApplicationController
     @query.destroy
 
     redirect_to '/'
+  end
+
+  def quickndirtyvalidatelocation(location_input)
+    primary_location = location_input.strip
+
+    if primary_location.match(/^\d{5}$/).nil? 
+      city = CityReference.find_city primary_location 
+    else
+      zipcode = ZipcodeReference.find_zipcode primary_location 
+    end
+
+    city.nil? and zipcode.nil?
   end
 
   def validate_location
