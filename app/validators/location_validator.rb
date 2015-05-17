@@ -1,4 +1,3 @@
-
 class LocationValidator < ActiveModel::Validator
   def validate(record)
     location = record.location
@@ -7,7 +6,7 @@ class LocationValidator < ActiveModel::Validator
     city = location['city']
 
     unless valid_location? zip, city
-      record.errors[:location] << 'bad city'
+      record.errors[:location] << 'Location Validator bad city'
     end
   end
 

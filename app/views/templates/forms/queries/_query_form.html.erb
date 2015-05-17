@@ -17,11 +17,13 @@
     <label for="title">Title of this search</label>
     <input id="title" name="title" type="text" placeholder="Title"
      value="<%= @query.nil? ? '' : @query.title %>">
+    <div class="input-error"><%= get_error_message(@query, :title) %></div>
 
     <!-- keywords -->
     <label for="keywords">Keywords</label>
     <input id="keywords" name="keywords" type="text" placeholder="Keywords"
      value="<%= @query.nil? ? '' : @query.heading.join(', ') %>">
+    <div class="input-error"><%= get_error_message(@query, :heading) %></div>
 
     <!-- category -->
     <label for="category">Category</label>
@@ -33,6 +35,7 @@
         </option>
       <% end %>
     </select>
+    <div class="input-error"><%= get_error_message(@query, :category_group) %></div>
   </fieldset>
 
   <!-- WHERE -->
@@ -44,7 +47,9 @@
 
     <!-- TODO: check for @query.location['city'] as well -->
     <input id="location-primary" name="location_primary" type="text" placeholder=""
-    value="<%= @query.nil? ? '' : Reference::LocationReference.get_short_name_from_location_code(@query.location['zipcode']) %>">
+    value="<%= @query.nil? ? '' : retrieve_original_location_input(@query.location['zipcode']) %>">
+    <div class="input-error"><%= get_error_message(@query, :location) %></div>
+
     <!-- distance radius -->
     <%= render 'templates/forms/queries/distance_select' %> 
     <div class="input-error" id="location-primary-error"></div>
@@ -81,11 +86,13 @@
     <label for="price_min">From</label>
     $<input type="number" name="price_min" step="1.00" min="0.00" id="price_min"
       value="<%= @query.nil? ? '' : @query.price_min %>">
+    <div class="input-error"><%= get_error_message(@query, :price_min) %></div>
 
     <!-- price max -->
     <label for="price_max">To</label>
     $<input type="number" name="price_max" step="1.00" min="0.00" id="price_max"
       value="<%= @query.nil? ? '' : @query.price_max %>">
+    <div class="input-error"><%= get_error_message(@query, :price_max) %></div>
   </fieldset>
 
   <!-- HOW OFTEN -->
@@ -101,7 +108,7 @@
     >
       <label for="weekly_frequency">Weekly</label>
     </input>
-    <div class="input-error"><%= @query.nil? ? '' : @query.errors[:frequency][0] %></div>
+    <div class="input-error"><%= get_error_message(@query, :frequency) %></div>
   </fieldset>
 
   <%= f.submit :class => 'pure-button pure-button-primary', 
