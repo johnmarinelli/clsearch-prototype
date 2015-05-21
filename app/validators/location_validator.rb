@@ -2,6 +2,8 @@ class LocationValidator < ActiveModel::Validator
   def validate(record)
     location = record.location
 
+    return if location.nil?
+
     zip = location['zipcode']
     city = location['city']
 

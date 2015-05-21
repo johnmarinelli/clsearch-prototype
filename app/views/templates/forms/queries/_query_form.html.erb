@@ -2,11 +2,7 @@
 <%= form_for :query, :html => { :class => 'pure-form pure-form-stacked' }, method: (@method.nil? ? :post : @method) do |f| %>
   <% if @query.errors.any? %>
     <div id="error-explanation">
-      <ul>
-        <% @query.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+      There are errors
     </div>
   <% end unless @query.nil? %>
 
@@ -45,9 +41,8 @@
     <!-- city/zip code -->
     <label for="location_primary">City or Zip Code</label>
 
-    <!-- TODO: check for @query.location['city'] as well -->
     <input id="location-primary" name="location_primary" type="text" placeholder=""
-    value="<%= @query.nil? ? '' : retrieve_original_location_input(@query.location['zipcode']) %>">
+    value="<%= @query.nil? ? '' : retrieve_original_location(@query.location['zipcode'] || @query.location['city']) %>">
     <div class="input-error"><%= get_error_message(@query, :location) %></div>
 
     <!-- distance radius -->

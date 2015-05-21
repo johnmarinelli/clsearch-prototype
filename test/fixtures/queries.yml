@@ -8,7 +8,7 @@ first:
   price_max: 100
   sources: 
   category_group: 'SSSS' 
-  location: '{"zipcode":92808}' 
+  location: '{"zipcode": "USA-91702" }'
   radius: 10
   user_id: 1
 
@@ -20,7 +20,7 @@ second:
   price_max: 200
   sources: 
   category_group: 'SSSS'
-  location: '{"city":91707}'
+  location: '{"zipcode": "USA-91707" }'
   user_id: 1,
   radius: 10
   title: 'title'
@@ -33,7 +33,7 @@ third:
   price_max: 300
   sources: 
   category_group: 'SSSS'
-  location: '{"city":12345}'
+  location: '{"zipcode": "USA-91702" }'
   radius: 10
   user_id: 2
 
@@ -45,7 +45,7 @@ fourth:
   price_max: 400
   sources: '["CRAIG", "AUTOC"]'
   category_group: 'SSSS'
-  location: '{"city": 12345}'
+  location: '{"city": "USA-LAX-ANA" }'
   radius: 10
   user_id: 4 
   last_searched: '2015-04-25 15:31:52 -0700'

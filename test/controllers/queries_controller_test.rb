@@ -76,4 +76,17 @@ class QueriesControllerTest < ActionController::TestCase
 
     assert_select '#error-explanation'
   end
+
+
+  test "no keywords should display a validation error" do
+    post :create, {
+      :title => 'title',
+      :keywords => '',
+      :category => 'category',
+      :location_primary => '0xdeadbeef',
+      :frequency => 'daily'
+    }
+
+    assert_select '#error-explanation'
+  end
 end

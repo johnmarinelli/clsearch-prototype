@@ -12,6 +12,5 @@ class QueryTest < ActiveSupport::TestCase
   test "Query has correct presence specifiers" do
     query = Query.new
     assert_not query.valid?
-    assert_equal [:title, :category_group], query.errors.keys, "Query created without title or category group"
   end
 end

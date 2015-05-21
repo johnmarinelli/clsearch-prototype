@@ -55,8 +55,6 @@ module Search
       # location
       primary_location = params[:location_primary].strip
 
-      puts primary_location
-
       if primary_location.match(/^\d{5}$/).nil? 
         city = CityReference.find_city primary_location 
       else

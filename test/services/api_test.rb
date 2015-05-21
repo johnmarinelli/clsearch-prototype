@@ -37,11 +37,10 @@ class QueryTest < ActiveSupport::TestCase
     url_has_get_param_with_value 'auth_token', ENV['API_KEY'], endpoint
     url_has_get_param_with_value 'anchor', '123456789', endpoint
     url_has_get_param_with_value 'sources', 'CRAIG|AUTOC', endpoint
-    url_has_get_param_with_value 'heading', 'abc def', endpoint
+    url_has_get_param_with_value 'heading', 'abc|def', endpoint
     url_has_get_param_with_value 'category_group', 'SSSS', endpoint
-    url_has_get_param_with_value 'location.city', '12345', endpoint
+    url_has_get_param_with_value 'location.city', 'USA-LAX-ANA', endpoint
     url_has_get_param_with_value 'radius', '10', endpoint 
     url_has_get_param_with_value 'price', '4..400', endpoint
-    url_has_get_param_with_value 'timestamp', '1429975912..', endpoint
   end
 end
