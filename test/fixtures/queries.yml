@@ -2,6 +2,7 @@
 
 first:
   id: 1
+  title: 'first'
   anchor: 
   heading: '["one", "key"]'
   price_min: 1
@@ -14,6 +15,7 @@ first:
 
 second:
   id: 2
+  title: 'second'
   anchor: 123456789
   heading: '["second","key"]'
   price_min: 2
@@ -27,6 +29,7 @@ second:
 
 third:
   id: 3
+  title: 'third'
   anchor: 
   heading: '["three","key"]'
   price_min: 3
@@ -39,6 +42,7 @@ third:
 
 fourth:
   id: 4
+  title: 'fourth'
   anchor: 123456789
   heading: '["abc", "def"]'
   price_min: 4

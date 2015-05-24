@@ -17,6 +17,16 @@ class QueriesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "edit should display correct short name for city" do 
+    get(:edit, { 'id' => queries(:fourth).id })
+    assert_select '#location-primary[value=?]', 'Anaheim'
+  end
+  
+  test "edit should display correct short name for zip code" do 
+    get(:edit, { 'id' => queries(:third).id })
+    assert_select '#location-primary[value=?]', '91702'
+  end
+
   test "should get destroy" do
     delete(:destroy, {'id' => queries(:first).id })
     assert_response :redirect

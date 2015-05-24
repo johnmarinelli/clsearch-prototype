@@ -11,11 +11,12 @@ module QueryHelper
     Reference::LocationReference.get_short_name_from_city_code(city) || city
   end
 
-  def retrieve_original_location(location)
-    if location.match(/^\d{5}$/).nil?
+  def retrieve_original_location(query)
+    location = query.location['zipcode'] || query.location['city']
+    if location.match(/\d{5}/).nil?
       retrieve_original_location_city location
     else
       retrieve_original_location_zipcode location
-    end
+    end unless location.nil? 
   end
 end

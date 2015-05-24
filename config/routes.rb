@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'queries/new'
 
   post '/queries/new' => 'queries#create'
+  post '/' => 'home#create_query_and_account'
   patch '/queries/:id/edit' => 'queries#update'
   resources :queries
 

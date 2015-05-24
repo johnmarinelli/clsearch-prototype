@@ -42,7 +42,7 @@
     <label for="location_primary">City or Zip Code</label>
 
     <input id="location-primary" name="location_primary" type="text" placeholder=""
-    value="<%= @query.nil? ? '' : retrieve_original_location(@query.location['zipcode'] || @query.location['city']) %>">
+    value="<%= @query.nil? ? '' : retrieve_original_location(@query) %>">
     <div class="input-error"><%= get_error_message(@query, :location) %></div>
 
     <!-- distance radius -->
@@ -96,7 +96,7 @@
     <input type="radio" name="frequency" value="daily" id="daily_frequency"
      <%= @query.nil? ? '' : @query.frequency == 'daily' ? 'checked=checked' : ''  %>
     >
-      <label for="daily_frequency">Daily</label>
+    <label for="daily_frequency">Daily</label>
     </input>
     <input type="radio" name="frequency" value="weekly" id="weekly_frequency"
      <%= @query.nil? ? '' : @query.frequency == 'weekly' ? 'checked=checked' : ''  %>
