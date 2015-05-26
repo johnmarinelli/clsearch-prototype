@@ -7,26 +7,28 @@ Rails.application.routes.draw do
   patch '/queries/:id/edit' => 'queries#update'
   resources :queries
 
-  devise_for :users
+  devise_for :users, :controllers => { :confirmations => 'confirmations' }
 
   # custom routes for devise.
   # set default scope to :user.
   devise_scope :user do
     get '/login' => 'devise/sessions#new'
     delete '/logout' => 'devise/sessions#destroy'
+
+    patch '/confirm' => 'confirmations#confirm'
+
+    authenticated :user do
+      root :to => 'dashboard#index'
+    end
+
+    # hackish way to circumvent https://github.com/plataformatec/devise/issues/2393
+    # redirect unauthenticated users to sign up
+    unauthenticated :user do
+      root :to => 'devise/registrations#new', as: :unauthenticated_root
+    end
   end
 
   resources :users, only: [:index, :show, :edit, :update]
-
-  authenticated :user do
-    root :to => 'dashboard#index'
-  end
-
-  # hackish way to circumvent https://github.com/plataformatec/devise/issues/2393
-  # redirect unauthenticaated users to index
-  unauthenticated do
-    root :to => 'home#index', as: :unauthenticated_root
-  end
 
   # validate location input clientside
   get '/validate_location' => 'queries#validate_location'
