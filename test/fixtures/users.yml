@@ -18,4 +18,5 @@ two:
 three:
   id: 3
   email: test3@email.com
+  confirmed_at: <%= Time.now %>
 

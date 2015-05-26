@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   get 'queries/new'
 
   post '/queries/new' => 'queries#create'
-  post '/' => 'home#create_query_and_account'
   patch '/queries/:id/edit' => 'queries#update'
   resources :queries
 
-  devise_for :users, :controllers => { :confirmations => 'confirmations' }
+  devise_for :users, :controllers => { :confirmations => 'confirmations', 
+                                       :registrations => 'registrations' } 
 
   # custom routes for devise.
   # set default scope to :user.
@@ -24,11 +24,11 @@ Rails.application.routes.draw do
     # hackish way to circumvent https://github.com/plataformatec/devise/issues/2393
     # redirect unauthenticated users to sign up
     unauthenticated :user do
-      root :to => 'devise/registrations#new', as: :unauthenticated_root
+      root :to => 'registrations#new', as: :unauthenticated_root
     end
   end
 
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:show, :edit, :update]
 
   # validate location input clientside
   get '/validate_location' => 'queries#validate_location'
