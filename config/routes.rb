@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   # validate location input clientside
   get '/validate_location' => 'queries#validate_location'
 
+  # Misc. static pages
+  get '/thanks' => 'static_pages#thanks'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

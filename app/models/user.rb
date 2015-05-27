@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
          :confirmable
 
   has_many :queries, dependent: :destroy
+  accepts_nested_attributes_for :queries
 
   def password_required?
     super if confirmed?

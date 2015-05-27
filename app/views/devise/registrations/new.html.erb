@@ -1,9 +1,11 @@
-<h2>Sign upa</h2>
+<h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  <%= render 'templates/forms/queries/index_page_query_form' %> 
+  <%= f.fields_for :query do |query_form| %>
+    <%= render 'templates/forms/queries/index_page_query_form' %> 
+  <% end %>
 
+  <%= devise_error_messages! %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
