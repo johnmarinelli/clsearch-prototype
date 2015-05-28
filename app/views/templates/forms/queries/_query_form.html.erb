@@ -1,56 +1,18 @@
+<%= form_for :query, :html => { :class => 'pure-form pure-form-stacked' }, method: (@method.nil? ? :post : @method) do |qf| %>
+    <%= qf.label :title %>
+    <%= qf.text_field :title %>
 
-<%= form_for :query, :html => { :class => 'pure-form pure-form-stacked' }, method: (@method.nil? ? :post : @method) do |f| %>
-  <% if @query.errors.any? %>
-    <div id="error-explanation">
-      There are errors
-    </div>
-  <% end unless @query.nil? %>
+    <%= qf.label :heading %>
+    <%= qf.text_field :heading %>
 
-  <!-- WHAT -->
-  <fieldset>
-    <legend>What?</legend>
-    <!-- title -->
-    <label for="title">Title of this search</label>
-    <input id="title" name="title" type="text" placeholder="Title"
-     value="<%= @query.nil? ? '' : @query.title %>">
-    <div class="input-error"><%= get_error_message(@query, :title) %></div>
-
-    <!-- keywords -->
-    <label for="keywords">Keywords</label>
-    <input id="keywords" name="keywords" type="text" placeholder="Keywords"
-     value="<%= @query.nil? ? '' : @query.heading.join(', ') %>">
-    <div class="input-error"><%= get_error_message(@query, :heading) %></div>
-
-    <!-- category -->
-    <label for="category">Category</label>
-    <select name="category" autocomplete="off" id="category">
-      <% @category_groups.each do |group| %>
-        <option value="<%= group['code'] %>"
-         <%= @query.nil? ? '' : @query.category_group == group['code'] ? 'selected=selected' : ''  %>>
-           <%= group['name'] %>
-        </option>
-      <% end %>
-    </select>
-    <div class="input-error"><%= get_error_message(@query, :category_group) %></div>
-  </fieldset>
-
-  <!-- WHERE -->
-  <fieldset>
-    <legend>Where?</legend>
-
-    <!-- city/zip code -->
-    <label for="location_primary">City or Zip Code</label>
-
-    <input id="location-primary" name="location_primary" type="text" placeholder=""
-    value="<%= @query.nil? ? '' : retrieve_original_location(@query) %>">
-    <div class="input-error"><%= get_error_message(@query, :location) %></div>
-
-    <!-- distance radius -->
-    <%= render 'templates/forms/queries/distance_select' %> 
-    <div class="input-error" id="location-primary-error"></div>
+    <%= qf.label :category_group, 'Category' %>
+    <%= qf.select :category_group, @category_groups.each.collect { |g| [g['code'], g['name']] }, include_blank: false %>
+  
+    <%= qf.label :location, 'City or Zip Code'%>
+    <%= qf.text_field :location, :input_html => { :value => (retrieve_original_location(@query) unless @query.nil?) } %>
 
     <script>
-    $('#location-primary').focusout(function() { 
+    $('#query_location').focusout(function() { 
       var text = $(this).val();
       $.ajax({
         url: '/validate_location',
@@ -71,42 +33,21 @@
     })
     </script>
 
-  </fieldset>
-  
-  <!-- HOW MUCH -->
-  <fieldset>
-    <legend>How much?</legend>
+    <%= qf.label :radius %>
+    <%= qf.select :radius, [5, 10, 20, 50, 'Anywhere'], include_blank: false %>
 
-    <!-- price min -->
-    <label for="price_min">From</label>
-    $<input type="number" name="price_min" step="1.00" min="0.00" id="price_min"
-      value="<%= @query.nil? ? '' : @query.price_min %>">
-    <div class="input-error"><%= get_error_message(@query, :price_min) %></div>
+    <%= qf.label :price_min %>
+    <%= qf.number_field :price_min %>
 
-    <!-- price max -->
-    <label for="price_max">To</label>
-    $<input type="number" name="price_max" step="1.00" min="0.00" id="price_max"
-      value="<%= @query.nil? ? '' : @query.price_max %>">
-    <div class="input-error"><%= get_error_message(@query, :price_max) %></div>
-  </fieldset>
+    <%= qf.label :price_max %>
+    <%= qf.number_field :price_max %>
 
-  <!-- HOW OFTEN -->
-  <fieldset>
-    <label for="frequency">I'd like my updates delivered...</label>
-    <input type="radio" name="frequency" value="daily" id="daily_frequency"
-     <%= @query.nil? ? '' : @query.frequency == 'daily' ? 'checked=checked' : ''  %>
-    >
-    <label for="daily_frequency">Daily</label>
-    </input>
-    <input type="radio" name="frequency" value="weekly" id="weekly_frequency"
-     <%= @query.nil? ? '' : @query.frequency == 'weekly' ? 'checked=checked' : ''  %>
-    >
-      <label for="weekly_frequency">Weekly</label>
-    </input>
-    <div class="input-error"><%= get_error_message(@query, :frequency) %></div>
-  </fieldset>
+    <%= qf.label :frequency_daily, 'Daily' %>
+    <%= qf.radio_button :frequency, 'daily' %>
+    <%= qf.label :frequency_weekly, 'Weekly' %>
+    <%= qf.radio_button :frequency, 'weekly' %>
 
-  <%= f.submit :class => 'pure-button pure-button-primary', 
-    data: { disable_with: 'Saving...' }, 
-    :disabled => @query.nil? %>
+  <%= qf.submit :class => 'pure-button pure-button-primary', 
+      data: { disable_with: 'Saving...' }, 
+      :disabled => @query.nil? %>
 <% end %>

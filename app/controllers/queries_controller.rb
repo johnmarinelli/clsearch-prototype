@@ -5,7 +5,7 @@ class QueriesController < ApplicationController
   end
 
   def create
-    @query = Query.new(Search::Parameters.construct_parameters_from_input(params))
+    @query = Query.new query_params
     @query[:user_id] = current_user.id
     if @query.save
       redirect_to '/' and return
@@ -18,13 +18,13 @@ class QueriesController < ApplicationController
   end
 
   def edit
-    @query = Query.find(params[:id])
+    @query = Query.find params[:id]
     @method = :patch
   end
 
   def update
-    @query = Query.find(params[:id])
-    if @query.update(query_params(params))
+    @query = Query.find params[:id]
+    if @query.update query_params
       redirect_to '/' and return
     else
       @method = :patch
@@ -55,8 +55,8 @@ class QueriesController < ApplicationController
   end
 
   private
-  def query_params(params)
-    Search::Parameters.construct_parameters_from_input(params)
+  def query_params
+    Search::Parameters.construct_parameters_from_input(params.require(:query))
   end
 
   def set_category_groups

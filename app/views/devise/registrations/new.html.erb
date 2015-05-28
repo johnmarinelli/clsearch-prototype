@@ -1,8 +1,55 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.fields_for :query do |query_form| %>
-    <%= render 'templates/forms/queries/index_page_query_form' %> 
+<%= form_for([resource, resource.with_query], as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.fields_for :queries do |qf| %>
+    <%= qf.label :title %>
+    <%= qf.text_field :title %>
+
+    <%= qf.label :heading %>
+    <%= qf.text_field :heading %>
+
+    <%= qf.label :category_group, 'Category' %>
+    <%= qf.select :category_group, @category_groups.each.collect { |g| [g['code'], g['name']] }, include_blank: false %>
+  
+    <%= qf.label :location, 'City or Zip Code'%>
+    <%= qf.text_field :location, :input_html => { :value => (retrieve_original_location(@query) unless @query.nil?) } %>
+
+    <script>
+    $('#user_query_location').focusout(function() { 
+      var text = $(this).val();
+      $.ajax({
+        url: '/validate_location',
+        data: { location_input: text },
+        method: 'get'
+      }).done(function(error) {
+          var errorText = '',
+          submitDisabled = true;
+          if ('none' !== error) {
+            errorText = error;
+          }
+          else {
+            submitDisabled = false;
+          }
+          $('#location-primary-error').html(errorText); 
+          $('input[name="commit"]').prop('disabled', submitDisabled)
+        })
+    })
+    </script>
+
+
+    <%= qf.label :radius %>
+    <%= qf.select :radius, [5, 10, 20, 50, 'Anywhere'], include_blank: false %>
+
+    <%= qf.label :price_min %>
+    <%= qf.number_field :price_min %>
+
+    <%= qf.label :price_max %>
+    <%= qf.number_field :price_max %>
+
+    <%= qf.label :frequency_daily, 'Daily' %>
+    <%= qf.radio_button :frequency, 'daily' %>
+    <%= qf.label :frequency_weekly, 'Weekly' %>
+    <%= qf.radio_button :frequency, 'weekly' %>
   <% end %>
 
   <%= devise_error_messages! %>

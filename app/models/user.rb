@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
   def has_queries?
     queries.length > 0
   end
+
+  def with_query
+    self.queries.build if self.queries.empty?
+    self
+  end
   
   def do_scheduled_query
     queries = self.queries

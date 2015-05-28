@@ -49,11 +49,11 @@ module Search
       title = params[:title]
 
       # assume keywords is a comma-separated list
-      keywords = params[:keywords].delete(' ').split(',')
-      category_group = params[:category]
+      keywords = params[:heading].delete(' ').split(',')
+      category_group = params[:category_group]
 
       # location
-      primary_location = params[:location_primary].strip
+      primary_location = params[:location].strip
 
       if primary_location.match(/^\d{5}$/).nil? 
         city = CityReference.find_city primary_location 
