@@ -12,75 +12,95 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create query and a user" do
+  test "should create query" do
     assert_difference('Query.count') do 
       post :create, {
-        :title => 'from home page',
-        :keywords => 'kw1, kw2, kw3',
-        :category => 'AAAA',
-        :location_primary => 'Chicago',
-        :radius => 5,
-        :price_min => 0,
-        :price_max => 100,
-        :frequency => 'daily',
         :user => {
-          :email => "ab@c.com"
+          :email => 'email@email.com',
+          'queries_attributes' => { 
+            '0' =>
+            {
+              :title => 'from home page',
+              :heading => 'kw1, kw2, kw3',
+              :category_group => 'AAAA',
+              :location => 'Chicago',
+              :radius => 5,
+              :price_min => 0,
+              :price_max => 100,
+              :frequency => 'daily',
+            }
+          }
         }
       }
     end
-    assert_response 302
+
+    #assert_redirected_to :controller => 'home', :action => 'index'
   end
 
   test "should create a user" do
     assert_difference('User.count') do 
       post :create, {
-        :title => 'from home page 2',
-        :keywords => 'kw1, kw2, kw3',
-        :category => 'AAAA',
-        :location_primary => 'Chicago',
-        :radius => 5,
-        :price_min => 0,
-        :price_max => 100,
-        :frequency => 'daily',
         :user => {
-          :email => "abc@d.com"
+          :email => 'email@email.com',
+          'queries_attributes' => { 
+            '0' =>
+            {
+              :title => 'from home page',
+              :heading => 'kw1, kw2, kw3',
+              :category_group => 'AAAA',
+              :location => 'Chicago',
+              :radius => 5,
+              :price_min => 0,
+              :price_max => 100,
+              :frequency => 'daily',
+            }
+          }
         }
       }
     end
-    assert_response 302
   end
 
-  test "should not create a user" do
+  test "should not create a user given no email" do
     assert_no_difference('User.count') do 
       post :create, {
-        :title => 'from home page 2',
-        :keywords => 'kw1, kw2, kw3',
-        :category => 'AAAA',
-        :location_primary => 'Chicago',
-        :radius => 5,
-        :price_min => 0,
-        :price_max => 100,
-        :frequency => 'daily',
         :user => {
-          :email => ""
+          :email => '',
+          'queries_attributes' => { 
+            '0' =>
+            {
+              :title => 'from home page',
+              :heading => 'kw1, kw2, kw3',
+              :category_group => 'AAAA',
+              :location => 'Chicago',
+              :radius => 5,
+              :price_min => 0,
+              :price_max => 100,
+              :frequency => 'daily',
+            }
+          }
         }
       }
     end
   end
   
-  test "should not create a query given bad user input" do
+  test "should not create a query given no email" do
     assert_no_difference('Query.count') do 
       post :create, {
-        :title => 'from home page 2',
-        :keywords => 'kw1, kw2, kw3',
-        :category => 'AAAA',
-        :location_primary => 'Chicago',
-        :radius => 5,
-        :price_min => 0,
-        :price_max => 100,
-        :frequency => 'daily',
         :user => {
-          :email => ""
+          :email => '',
+          'queries_attributes' => { 
+            '0' =>
+            {
+              :title => 'from home page',
+              :heading => 'kw1, kw2, kw3',
+              :category_group => 'AAAA',
+              :location => 'Chicago',
+              :radius => 5,
+              :price_min => 0,
+              :price_max => 100,
+              :frequency => 'daily',
+            }
+          }
         }
       }
     end
@@ -89,16 +109,21 @@ class RegistrationsControllerTest < ActionController::TestCase
   test "should not create a user given bad query input" do
     assert_no_difference('User.count') do 
       post :create, {
-        :title => '',
-        :keywords => '',
-        :category => '',
-        :location_primary => '',
-        :radius => 5,
-        :price_min => 0,
-        :price_max => 100,
-        :frequency => '',
         :user => {
-          :email => "asf@aemail.com"
+          :email => '',
+          'queries_attributes' => { 
+            '0' =>
+            {
+              :title => 'from home page',
+              :heading => '',
+              :category_group => 'AAAA',
+              :location => 'Chicago',
+              :radius => 5,
+              :price_min => 0,
+              :price_max => 100,
+              :frequency => 'daily',
+            }
+          }
         }
       }
     end

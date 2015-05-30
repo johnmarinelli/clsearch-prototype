@@ -19,12 +19,12 @@ class QueriesControllerTest < ActionController::TestCase
 
   test "edit should display correct short name for city" do 
     get(:edit, { 'id' => queries(:fourth).id })
-    assert_select '#location-primary[value=?]', 'Anaheim'
+    assert_select '#location[value=?]', 'Anaheim'
   end
   
   test "edit should display correct short name for zip code" do 
     get(:edit, { 'id' => queries(:third).id })
-    assert_select '#location-primary[value=?]', '91702'
+    assert_select '#location[value=?]', '91702'
   end
 
   test "should get destroy" do
@@ -35,14 +35,16 @@ class QueriesControllerTest < ActionController::TestCase
   test "should create query" do
     assert_difference('Query.count') do 
       post :create, {
-        :title => 'functional_1',
-        :keywords => 'kw1, kw2, kw3',
-        :category => 'AAAA',
-        :location_primary => 'Anaheim',
-        :radius => 5,
-        :price_min => 0,
-        :price_max => 100,
-        :frequency => 'daily'
+        :query => {
+          :title => 'functional_1',
+          :heading => 'kw1, kw2, kw3',
+          :category_group => 'AAAA',
+          :location => 'Anaheim',
+          :radius => 5,
+          :price_min => 0,
+          :price_max => 100,
+          :frequency => 'daily'
+        }
       }
     end
 
@@ -51,24 +53,28 @@ class QueriesControllerTest < ActionController::TestCase
 
   test "no title should display a validation error" do
     post :create, {
-      :title => '',
-      :keywords => 'kw1, kw2, kw3',
-      :category => 'BBBB',
-      :location_primary => '0xdeadbeef',
-      :frequency => 'daily'
+      :query => {
+        :title => '',
+        :heading => 'kw1, kw2, kw3',
+        :category_group => 'BBBB',
+        :location => '0xdeadbeef',
+        :frequency => 'daily'
+      }
     }
 
     assert_select '#error-explanation'
   end
 
 
-  test "no category should display a validation error" do
+  test "no category_group should display a validation error" do
     post :create, {
-      :title => 'title',
-      :keywords => 'kw1, kw2, kw3',
-      :category => '',
-      :location_primary => '0xdeadbeef',
-      :frequency => 'daily'
+      :query => {
+        :title => 'title',
+        :heading => 'kw1, kw2, kw3',
+        :category_group => '',
+        :location => '0xdeadbeef',
+        :frequency => 'daily'
+      }
     }
 
     assert_select '#error-explanation'
@@ -77,11 +83,13 @@ class QueriesControllerTest < ActionController::TestCase
 
   test "no frequency should display a validation error" do
     post :create, {
-      :title => 'title',
-      :keywords => 'kw1, kw2, kw3',
-      :category => 'category',
-      :location_primary => '0xdeadbeef',
-      :frequency => ''
+      :query => {
+        :title => 'title',
+        :heading => 'kw1, kw2, kw3',
+        :category_group => 'category',
+        :location => '0xdeadbeef',
+        :frequency => ''
+      }
     }
 
     assert_select '#error-explanation'
@@ -90,13 +98,33 @@ class QueriesControllerTest < ActionController::TestCase
 
   test "no keywords should display a validation error" do
     post :create, {
-      :title => 'title',
-      :keywords => '',
-      :category => 'category',
-      :location_primary => '0xdeadbeef',
-      :frequency => 'daily'
+      :query => {
+        :title => 'title',
+        :heading => '',
+        :category_group => 'category',
+        :location => '0xdeadbeef',
+        :frequency => 'daily'
+      }
     }
 
     assert_select '#error-explanation'
+  end
+
+  test "it should edit a query" do
+    patch :update, {
+      :id => 1,
+      :query => {
+        :title => 'functional_1',
+        :heading => 'kw1, kw2, kw3',
+        :category_group => 'AAAA',
+        :location => 'Anaheim',
+        :radius => 5,
+        :price_min => 0,
+        :price_max => 100,
+        :frequency => 'daily'
+      }
+    }
+
+    assert_response :redirect
   end
 end

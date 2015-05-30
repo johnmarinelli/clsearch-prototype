@@ -73,8 +73,8 @@ module Search
       query_params = {
         :anchor => nil,
         :title => title,
-        :sources => Array([]),
-        :heading => Array(keywords),
+        :sources => Array([]).to_json,
+        :heading => Array(keywords).to_json,
         :category_group => category_group,
         :location => {
           :city => city || nil,

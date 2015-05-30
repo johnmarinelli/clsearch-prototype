@@ -16,9 +16,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update_sanitized_params
-    allowed_queries_attrs = Query.new.attributes.keys - ['id', 'anchor', 'sources', 'created_at', 'updated_at', 'last_searched']
+    allowed_queries_attrs = Query.new.attributes.keys - ['_destroy', 'anchor', 'sources', 'created_at', 'updated_at', 'last_searched']
 
     devise_parameter_sanitizer.for(:sign_up) do |u|
+      u['queries_attributes']['0'] = Search::Parameters.construct_parameters_from_input u['queries_attributes']['0']
       u.permit :email, queries_attributes: allowed_queries_attrs
     end
   end

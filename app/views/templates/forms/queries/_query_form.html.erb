@@ -1,4 +1,10 @@
 <%= form_for :query, :html => { :class => 'pure-form pure-form-stacked' }, method: (@method.nil? ? :post : @method) do |qf| %>
+  <% if @query.errors.any? %>
+    <div id="error-explanation">
+      There are errors
+    </div>
+  <% end unless @query.nil? %>
+
     <%= qf.label :title %>
     <%= qf.text_field :title %>
 
@@ -9,7 +15,8 @@
     <%= qf.select :category_group, @category_groups.each.collect { |g| [g['code'], g['name']] }, include_blank: false %>
   
     <%= qf.label :location, 'City or Zip Code'%>
-    <%= qf.text_field :location, :input_html => { :value => (retrieve_original_location(@query) unless @query.nil?) } %>
+    <%= qf.text_field :location, :value => (retrieve_original_location(@query) unless @query.nil?), :id => 'location'  %>
+    <div class="input-error" id="location-primary-error"></div>
 
     <script>
     $('#query_location').focusout(function() { 
