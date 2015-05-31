@@ -33,8 +33,6 @@ class RegistrationsControllerTest < ActionController::TestCase
         }
       }
     end
-
-    #assert_redirected_to :controller => 'home', :action => 'index'
   end
 
   test "should create a user" do
