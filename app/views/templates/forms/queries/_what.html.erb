@@ -1,0 +1,8 @@
+<%= qf.label :title %>
+<%= qf.text_field :title %>
+
+<%= qf.label :heading %>
+<%= qf.text_field :heading, :value => heading %>
+
+<%= qf.label :category_group, 'Category' %>
+<%= qf.select :category_group, @category_groups.each.collect { |g| [g['code'], g['name']] }, include_blank: false %>

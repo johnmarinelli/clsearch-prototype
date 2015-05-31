@@ -27,7 +27,7 @@ module QueryHelper
   end
 
   def get_query(resource)
-    resource.queries[0]
+    resource.queries[0] 
   end
 
   def get_heading(resource)

@@ -5,54 +5,14 @@
     </div>
   <% end unless @query.nil? %>
 
-    <%= qf.label :title %>
-    <%= qf.text_field :title %>
-
-    <%= qf.label :heading %>
-    <%= qf.text_field :heading %>
-
-    <%= qf.label :category_group, 'Category' %>
-    <%= qf.select :category_group, @category_groups.each.collect { |g| [g['code'], g['name']] }, include_blank: false %>
-  
-    <%= qf.label :location, 'City or Zip Code'%>
-    <%= qf.text_field :location, :value => (retrieve_original_location(@query) unless @query.nil?), :id => 'location'  %>
-    <div class="input-error" id="location-primary-error"></div>
-
-    <script>
-    $('#query_location').focusout(function() { 
-      var text = $(this).val();
-      $.ajax({
-        url: '/validate_location',
-        data: { location_input: text },
-        method: 'get'
-      }).done(function(error) {
-          var errorText = '',
-          submitDisabled = true;
-          if ('none' !== error) {
-            errorText = error;
-          }
-          else {
-            submitDisabled = false;
-          }
-          $('#location-primary-error').html(errorText); 
-          $('input[name="commit"]').prop('disabled', submitDisabled)
-        })
-    })
-    </script>
-
-    <%= qf.label :radius %>
-    <%= qf.select :radius, [5, 10, 20, 50, 'Anywhere'], include_blank: false %>
-
-    <%= qf.label :price_min %>
-    <%= qf.number_field :price_min %>
-
-    <%= qf.label :price_max %>
-    <%= qf.number_field :price_max %>
-
-    <%= qf.label :frequency_daily, 'Daily' %>
-    <%= qf.radio_button :frequency, 'daily' %>
-    <%= qf.label :frequency_weekly, 'Weekly' %>
-    <%= qf.radio_button :frequency, 'weekly' %>
+  <%= render partial: 'templates/forms/queries/what', 
+    locals: { qf:  qf, heading: (@query.heading unless @query.nil?) } %>
+  <%= render partial: 'templates/forms/queries/where', 
+    locals: { qf:  qf, location: (retrieve_original_location @query unless @query.nil?) }%>
+  <%= render partial: 'templates/forms/queries/how_much', 
+    locals: { qf:  qf } %>
+  <%= render partial: 'templates/forms/queries/how_often', 
+    locals: { qf:  qf } %>
 
   <%= qf.submit :class => 'pure-button pure-button-primary', 
       data: { disable_with: 'Saving...' }, 
