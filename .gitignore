@@ -50,3 +50,4 @@ app/services/api_key.rb
 /config/application.yml
 
 app/services/api_key.rb
+theme

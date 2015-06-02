@@ -1,4 +1,24 @@
 <h1>Welcome to craigslist search prototype</h1>
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+          <h1>Some bullshit</h1>
+          <p>Try it out.  Sign up or create your first query below.</p>
+					<form class="form-inline" role="form">
+					  <div class="form-group">
+					    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your email address">
+					  </div>
+					  <button type="submit" class="btn btn-warning btn-lg">Invite Me!</button>
+					</form>
+				</div><!-- /col-lg-6 -->
+				<div class="col-lg-6">
+					<img class="img-responsive" src="assets/img/ipad-hand.png" alt="Get automatic emails for your search queries">
+				</div><!-- /col-lg-6 -->
+				
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- /headerwrap -->
 <%= render 'templates/forms/queries/query_form' %>
 
 <%= link_to('Login', login_path) %>
