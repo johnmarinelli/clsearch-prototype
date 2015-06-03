@@ -1,0 +1,18 @@
+$sm-px:10px;
+
+$sm-px-font: 12px;
+$md-px-font: 24px;
+$lg-px-font: 60px;
+
+.top-margin-sm {
+  margin-top: $sm-px;
+}
+
+.text-md {
+  font-size: $md-px-font;
+}
+
+
+.full-width {
+  width: 100%;
+}

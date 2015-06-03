@@ -11,12 +11,16 @@
           <button type="submit" class="btn btn-warning btn-lg">Sign Up</button>
         </form>
       </div><!-- /col-lg-6 -->
-      <div class="col-lg-6">
-        <%= image_tag 'ser02.png', class: 'img-responsive', alt: 'Get automated emails for your Craigslist queries' %>
-      </div><!-- /col-lg-6 -->
-      
     </div><!-- /row -->
   </div><!-- /container -->
 </div><!-- /headerwrap -->
-<%= render 'templates/forms/queries/index_page_query_form' %>
+
+<div class="container full-width">
+  <div class="row">
+    <div class="top-margin-sm">
+      <%= render 'templates/forms/queries/index_page_query_form' %>
+    </div>
+  </div>
+</div>
+
 <%= render "devise/shared/links" %>

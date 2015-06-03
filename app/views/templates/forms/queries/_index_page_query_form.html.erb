@@ -1,15 +1,31 @@
 <%= form_for([resource, resource.with_query], 
       as: resource_name, 
-      url: registration_path(resource_name)) do |f| %>
+      url: registration_path(resource_name),
+      html: { class: 'pure-form pure-form-stacked registration'} ) do |f| %>
   <%= f.fields_for :queries do |qf| %>
-    <%= render partial: 'templates/forms/queries/what', 
-      locals: { qf:  qf, heading: transform_heading(get_heading resource) }%>
-    <%= render partial: 'templates/forms/queries/where', 
-      locals: { qf:  qf, location: retrieve_original_location(get_query resource) }%>
-    <%= render partial: 'templates/forms/queries/how_much', 
-      locals: { qf:  qf } %>
-    <%= render partial: 'templates/forms/queries/how_often', 
-      locals: { qf:  qf } %>
+    <fieldset class="what">
+      <legend>What are you looking for?</legend>
+      <%= render partial: 'templates/forms/queries/what', 
+        locals: { qf:  qf, heading: transform_heading(get_heading resource) }%>
+    </fieldset>
+
+    <fieldset class="where">
+      <legend>Where do you want to look?</legend>
+      <%= render partial: 'templates/forms/queries/where', 
+        locals: { qf:  qf, location: retrieve_original_location(get_query resource) }%>
+    </fieldset>
+
+    <fieldset class="how-much">
+      <legend>What's your price range?  <span class="text-md">(Enter zero in both fields for updates on free loot!)</span></legend>
+      <%= render partial: 'templates/forms/queries/how_much', 
+        locals: { qf:  qf } %>
+    </fieldset>
+
+    <fieldset class="how-often">
+      <legend>How often do you want to be updated?</legend>
+      <%= render partial: 'templates/forms/queries/how_often', 
+        locals: { qf:  qf } %>
+    </fieldset>
   <% end %>
 
   <%= devise_error_messages! %>
