@@ -1,8 +1,14 @@
-<%= qf.label :title %>
-<%= qf.text_field :title %>
+<div class="pure-control-group">
+  <%= qf.label :title, 'Name of your search' %>
+  <%= qf.text_field :title %>
+</div>
 
-<%= qf.label :heading %>
-<%= qf.text_field :heading, :value => heading %>
+<div class="pure-control-group">
+  <%= qf.label :heading, 'Keywords' %>
+  <%= qf.text_field :heading, :value => heading %>
+</div>
 
-<%= qf.label :category_group, 'Category' %>
-<%= qf.select :category_group, @category_groups.each.collect { |g| [g['code'], g['name']] }, include_blank: false %>
+<div class="pure-control-group">
+  <%= qf.label :category_group, 'Category' %>
+  <%= qf.select :category_group, @category_groups.each.collect { |g| [g['name'], g['code']] }, include_blank: false %>
+</div>

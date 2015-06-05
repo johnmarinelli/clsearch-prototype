@@ -7,6 +7,7 @@ body {
   font-weight: 300;
   font-size: 16px;
   color: #555;
+  background: url(straws) repeat center top;
 
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
@@ -141,11 +142,40 @@ i {
 	margin-top: 60px;
 	margin-bottom: 15px;
 	color: white;
-	font-size: 45px;
+	font-size: 5em;
 	font-weight: 300;
 	letter-spacing: 1px;
 }
 
-form.registration legend {
-  font-size: 3em;
+form.registration {
+  i.fa {
+    margin-right: $md-px;
+  }
+  
+  legend {
+    font-size: 3em;
+    text-align: center;
+    line-height: 1;
+    background-color: white;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .fields {
+    margin-bottom: 5%;
+    margin-left: 10%;
+  }
+
+  label {
+    font-size: 1.3em;
+  }
+
+  .actions {
+    text-align: center;
+  }
+
+  input[type="submit"] {
+    font-size: 2.5em;
+    width: 50%;
+  }
 }
+

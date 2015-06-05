@@ -1,41 +1,54 @@
 <%= form_for([resource, resource.with_query], 
       as: resource_name, 
       url: registration_path(resource_name),
-      html: { class: 'pure-form pure-form-stacked registration'} ) do |f| %>
+      html: { class: 'pure-form pure-form-aligned registration'} ) do |f| %>
   <%= f.fields_for :queries do |qf| %>
     <fieldset class="what">
-      <legend>What are you looking for?</legend>
-      <%= render partial: 'templates/forms/queries/what', 
-        locals: { qf:  qf, heading: transform_heading(get_heading resource) }%>
+      <legend><i class="fa fa-cart-arrow-down"></i>What are you looking for?</legend>
+      <div class="fields">
+        <%= render partial: 'templates/forms/queries/what', 
+          locals: { qf:  qf, heading: transform_heading(get_heading resource) }%>
+      </div>
     </fieldset>
 
     <fieldset class="where">
-      <legend>Where do you want to look?</legend>
-      <%= render partial: 'templates/forms/queries/where', 
-        locals: { qf:  qf, location: retrieve_original_location(get_query resource) }%>
+      <legend><i class="fa fa-map-marker"></i>Where do you want to look?</legend>
+      <div class="fields">
+        <%= render partial: 'templates/forms/queries/where', 
+          locals: { qf:  qf, location: retrieve_original_location(get_query resource) }%>
+      </div>
     </fieldset>
 
     <fieldset class="how-much">
-      <legend>What's your price range?  <span class="text-md">(Enter zero in both fields for updates on free loot!)</span></legend>
-      <%= render partial: 'templates/forms/queries/how_much', 
-        locals: { qf:  qf } %>
+      <legend><i class="fa fa-money"></i>What's your price range?<br/><span class="text-md">(Enter zero in both fields for updates on free loot!)</span></legend>
+      <div class="fields">
+        <%= render partial: 'templates/forms/queries/how_much', 
+          locals: { qf:  qf } %>
+      </div>
     </fieldset>
 
     <fieldset class="how-often">
-      <legend>How often do you want to be updated?</legend>
-      <%= render partial: 'templates/forms/queries/how_often', 
-        locals: { qf:  qf } %>
+      <legend><i class="fa fa-clock-o"></i>How often do you want to be updated?</legend>
+      <div class="fields">
+        <%= render partial: 'templates/forms/queries/how_often', 
+          locals: { qf:  qf } %>
+      </div>
     </fieldset>
   <% end %>
 
   <%= devise_error_messages! %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <fieldset> 
+    <legend><i class="fa fa-envelope-o"></i>And finally, your email:</legend>
+    <div class="fields">
+      <div class="pure-control-group">
+        <%= f.label :email %>
+        <%= f.email_field :email %> 
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <div class="actions">
+      <%= f.submit "Sign up", class: 'btn btn-warning btn-lg'  %>
+    </div>
+  </fieldset>
 <% end %>
 

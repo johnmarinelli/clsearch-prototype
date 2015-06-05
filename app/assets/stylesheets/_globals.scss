@@ -1,4 +1,5 @@
 $sm-px:10px;
+$md-px: 25px;
 
 $sm-px-font: 12px;
 $md-px-font: 24px;
@@ -15,4 +16,12 @@ $lg-px-font: 60px;
 
 .full-width {
   width: 100%;
+}
+
+.pure-form {
+  font-size: 1.1em;
+}
+
+.pure-control-group {
+  margin: 3% 0px;
 }
