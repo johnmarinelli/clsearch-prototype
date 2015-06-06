@@ -5,6 +5,14 @@ $sm-px-font: 12px;
 $md-px-font: 24px;
 $lg-px-font: 60px;
 
+$mobile: "(min-width: 320px) and (max-width: 767px)";
+$tablet: "(min-width: 768px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px)";
+
+.top-margin {
+  height: 50px;
+}
+
 .top-margin-sm {
   margin-top: $sm-px;
 }
@@ -16,6 +24,10 @@ $lg-px-font: 60px;
 
 .full-width {
   width: 100%;
+}
+
+.center-text {
+  text-align: center;
 }
 
 .pure-form {

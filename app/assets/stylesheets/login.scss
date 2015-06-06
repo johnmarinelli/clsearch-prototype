@@ -1,0 +1,15 @@
+.container.login {
+  width: 50%;
+  margin: auto;
+  margin-top: 30vh;
+  padding: $md-px;
+  background-color: rgba(0, 0, 0, .13);
+}
+
+@media #{$mobile} {
+  .container.login {
+    width: 100%;
+    margin-top: 10vh;
+    background-color: transparent;
+  }
+}

@@ -1,4 +1,4 @@
-<%= form_for :query, :html => { :class => 'pure-form pure-form-stacked' }, method: (@method.nil? ? :post : @method) do |qf| %>
+<%= form_for :query, :html => { :class => 'pure-form pure-form-stacked queries' }, method: (@method.nil? ? :post : @method) do |qf| %>
   <% if @query.errors.any? %>
     <div id="error-explanation">
       There are errors
@@ -7,10 +7,13 @@
 
   <%= render partial: 'templates/forms/queries/what', 
     locals: { qf:  qf, heading: (@query.heading unless @query.nil?) } %>
+  <hr/>
   <%= render partial: 'templates/forms/queries/where', 
     locals: { qf:  qf, location: (retrieve_original_location @query unless @query.nil?) }%>
+  <hr/>
   <%= render partial: 'templates/forms/queries/how_much', 
     locals: { qf:  qf } %>
+  <hr/>
   <%= render partial: 'templates/forms/queries/how_often', 
     locals: { qf:  qf } %>
 
