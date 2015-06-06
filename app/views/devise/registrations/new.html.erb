@@ -4,12 +4,13 @@
       <div class="col-lg-6">
         <h1>Some bullshit</h1>
         <p>Try it out.  Sign up or create your first query below.</p>
-        <form class="form-inline" role="form">
-          <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your email address">
-          </div>
-          <button type="submit" class="btn btn-warning btn-lg">Sign Up</button>
-        </form>
+        <%= form_for(resource, 
+            as: resource_name, 
+            url: { :action => 'new_email_only' },
+            html: { class: 'form-inline', id: 'email-only' }) do |f| %>
+          <%= f.email_field :email, class: 'form-control', placeholder: 'Enter your email address' %>
+          <%= f.submit 'Submit', class: 'btn btn-warning btn-lg' %>
+        <% end %>
       </div><!-- /col-lg-6 -->
     </div><!-- /row -->
   </div><!-- /container -->

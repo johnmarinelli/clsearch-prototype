@@ -1,9 +1,11 @@
 <div class="pure-control-group">
-  <%= qf.label :frequency_daily, 'Daily' %>
-  <%= qf.radio_button :frequency, 'daily' %>
+  <label class="pure-radio">Daily 
+    <%= qf.radio_button :frequency, 'daily' %>
+  </label>
 </div>
 
 <div class="pure-control-group">
-  <%= qf.label :frequency_weekly, 'Weekly' %>
-  <%= qf.radio_button :frequency, 'weekly' %>
+  <label class="pure-radio"> Weekly 
+    <%= qf.radio_button :frequency, 'weekly' %>
+  </label>
 </div>

@@ -1,7 +1,7 @@
 <%= form_for([resource, resource.with_query], 
-      as: resource_name, 
-      url: registration_path(resource_name),
-      html: { class: 'pure-form pure-form-aligned registration'} ) do |f| %>
+              as: resource_name, 
+              url: registration_path(resource_name),
+              html: { class: 'pure-form pure-form-aligned registration'} ) do |f| %>
   <%= f.fields_for :queries do |qf| %>
     <fieldset class="what">
       <legend><i class="fa fa-cart-arrow-down"></i>What are you looking for?</legend>

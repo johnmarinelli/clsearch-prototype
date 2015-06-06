@@ -1,9 +1,9 @@
 .container.login {
   width: 50%;
   margin: auto;
-  margin-top: 30vh;
+  margin-top: 20vh;
   padding: $md-px;
-  background-color: rgba(0, 0, 0, .13);
+  background-color: $semi-transparent;
 }
 
 @media #{$mobile} {

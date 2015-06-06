@@ -5,6 +5,9 @@ $sm-px-font: 12px;
 $md-px-font: 24px;
 $lg-px-font: 60px;
 
+$semi-transparent: rgba(0, 0, 0, .13);
+$red: #e80000;
+
 $mobile: "(min-width: 320px) and (max-width: 767px)";
 $tablet: "(min-width: 768px) and (max-width: 1023px)";
 $desktop: "(min-width: 1024px)";
@@ -28,6 +31,14 @@ $desktop: "(min-width: 1024px)";
 
 .center-text {
   text-align: center;
+}
+
+.bg-red {
+  background-color: $red;
+}
+
+.text-white {
+  color: white;
 }
 
 .pure-form {

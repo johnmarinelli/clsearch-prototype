@@ -1,9 +1,13 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :set_category_groups, only: [:new, :create]
   before_action :update_sanitized_params, if: :devise_controller?
+  layout 'home', only: [:new]
 
   def new
     super
+  end
+
+  def new_email_only
   end
 
   def create
