@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :confirmations => 'confirmations', 
                                        :registrations => 'registrations' } 
+  #resource :registrations do 
+  #  post :new_email_only
+  #end
+
+  post '/registrations/new_email_only', to: 'registrations#new_email_only'
 
   # custom routes for devise.
   # set default scope to :user.

@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new_email_only
+    redirect_to '/'
   end
 
   def create
@@ -25,6 +26,6 @@ class RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u['queries_attributes']['0'] = Search::Parameters.construct_parameters_from_input u['queries_attributes']['0']
       u.permit :email, queries_attributes: allowed_queries_attrs
-    end
+    end unless params['queries_attributes'].nil?
   end
 end
