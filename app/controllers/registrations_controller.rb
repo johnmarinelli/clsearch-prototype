@@ -22,6 +22,6 @@ class RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u['queries_attributes']['0'] = Search::Parameters.construct_parameters_from_input u['queries_attributes']['0']
       u.permit :email, queries_attributes: allowed_queries_attrs
-    end unless params['queries_attributes'].nil?
+    end unless params['user'].nil? or params['user']['queries_attributes'].nil?
   end
 end

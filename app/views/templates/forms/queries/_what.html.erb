@@ -1,14 +1,17 @@
 <div class="pure-control-group">
   <%= qf.label :title, 'Name of your search' %>
   <%= qf.text_field :title %>
+  <span class="error"><%= get_resource_error_message resource, title_error_sym %></span>
 </div>
 
 <div class="pure-control-group">
   <%= qf.label :heading, 'Keywords' %>
   <%= qf.text_field :heading, :value => heading %>
+  <span class="error"><%= get_resource_error_message resource, heading_error_sym %></span>
 </div>
 
 <div class="pure-control-group">
   <%= qf.label :category_group, 'Category' %>
   <%= qf.select :category_group, @category_groups.each.collect { |g| [g['name'], g['code']] }, include_blank: false %>
+  <span class="error"><%= get_resource_error_message resource, category_group_error_sym %></span>
 </div>

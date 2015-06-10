@@ -1,6 +1,7 @@
 <div class="pure-control-group">
   <%= qf.label :location, 'City or Zip Code'%>
   <%= qf.text_field :location, :value => location, :id => 'location'  %>
+  <span class="error"><%= get_resource_error_message resource, location_error_sym %></span>
 </div>
 
 <div class="input-error" id="location-primary-error"></div>
@@ -31,5 +32,6 @@ $('#user_query_location').focusout(function() {
 <div class="pure-control-group">
   <%= qf.label :radius %>
   <%= qf.select :radius, [5, 10, 20, 50, 'Anywhere'], include_blank: false %>
+  <span class="error"><%= get_resource_error_message resource, radius_error_sym %></span>
 </div>
 

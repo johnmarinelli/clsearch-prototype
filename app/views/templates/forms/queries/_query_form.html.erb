@@ -6,16 +6,42 @@
   <% end unless @query.nil? %>
 
   <%= render partial: 'templates/forms/queries/what', 
-    locals: { qf:  qf, heading: (@query.heading unless @query.nil?) } %>
+    locals: { 
+      qf:  qf, 
+      heading: (@query.heading unless @query.nil?), 
+      resource: (@query unless @query.nil?),
+      title_error_sym: :title,
+      heading_error_sym: :heading,
+      category_group_error_sym: :category_group
+    } 
+  %>
   <hr/>
   <%= render partial: 'templates/forms/queries/where', 
-    locals: { qf:  qf, location: (retrieve_original_location @query unless @query.nil?) }%>
+    locals: { 
+      qf:  qf, 
+      location: (retrieve_original_location @query unless @query.nil?), 
+      resource: (@query unless @query.nil?),
+      location_error_sym: :location,
+      radius_error_sym: :radius
+    }
+  %>
   <hr/>
   <%= render partial: 'templates/forms/queries/how_much', 
-    locals: { qf:  qf } %>
+    locals: { 
+      qf:  qf, 
+      resource: (@query unless @query.nil?),
+      price_min_error_sym: :price_min,
+      price_max_error_sym: :price_max
+    } 
+  %>
   <hr/>
   <%= render partial: 'templates/forms/queries/how_often', 
-    locals: { qf:  qf } %>
+    locals: { 
+      qf:  qf, 
+      resource: (@query unless @query.nil?),
+      frequency_error_sym: :frequency
+    } 
+  %>
 
   <%= qf.submit :class => 'pure-button pure-button-primary', 
       data: { disable_with: 'Saving...' }, 

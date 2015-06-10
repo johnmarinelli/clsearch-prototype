@@ -7,7 +7,14 @@
       <legend><i class="fa fa-cart-arrow-down"></i>What are you looking for?</legend>
       <div class="fields">
         <%= render partial: 'templates/forms/queries/what', 
-          locals: { qf:  qf, heading: transform_heading(get_heading resource) }%>
+          locals: { 
+            qf:  qf, 
+            heading: transform_heading(get_heading resource),
+            title_error_sym: :"queries.title",
+            heading_error_sym: :"queries.heading",
+            category_group_error_sym: :"queries.category_group"
+          }
+        %>
       </div>
     </fieldset>
 
@@ -15,7 +22,13 @@
       <legend><i class="fa fa-map-marker"></i>Where do you want to look?</legend>
       <div class="fields">
         <%= render partial: 'templates/forms/queries/where', 
-          locals: { qf:  qf, location: retrieve_original_location(get_query resource) }%>
+          locals: { 
+            qf:  qf, 
+            location: retrieve_original_location(get_query resource),
+            location_error_sym: :"queries.location",
+            radius_error_sym: :"queries.radius"
+          }
+        %>
       </div>
     </fieldset>
 
@@ -23,7 +36,12 @@
       <legend><i class="fa fa-money"></i>What's your price range?<br/><span class="text-md">(Enter zero in both fields for updates on free loot!)</span></legend>
       <div class="fields">
         <%= render partial: 'templates/forms/queries/how_much', 
-          locals: { qf:  qf } %>
+          locals: { 
+            qf:  qf,
+            price_min_error_sym: :"queries.price_min",
+            price_max_error_sym: :"queries.price_max"
+          } 
+        %>
       </div>
     </fieldset>
 
@@ -31,7 +49,11 @@
       <legend><i class="fa fa-clock-o"></i>How often do you want to be updated?</legend>
       <div class="fields">
         <%= render partial: 'templates/forms/queries/how_often', 
-          locals: { qf:  qf } %>
+          locals: { 
+            qf:  qf,
+            frequency_error_sym: :"queries.frequency"
+          } 
+        %>
       </div>
     </fieldset>
   <% end %>
@@ -43,6 +65,7 @@
       <div class="pure-control-group">
         <%= f.label :email %>
         <%= f.email_field :email %> 
+        <span class="error"><%= get_resource_error_message resource, :email %></span>
       </div>
     </div>
 

@@ -3,6 +3,10 @@ module QueryHelper
     @query.nil? ? '' : @query.errors[key][0]
   end
 
+  def get_resource_error_message(resource, key)
+    resource.nil? ? '' : resource.errors[key][0]
+  end
+
   def retrieve_original_location_zipcode(zipcode)
     Reference::LocationReference.get_short_name_from_zipcode_code(zipcode) || zipcode
   end
