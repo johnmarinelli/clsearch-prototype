@@ -8,7 +8,7 @@
   <%= render partial: 'templates/forms/queries/what', 
     locals: { 
       qf:  qf, 
-      heading: (@query.heading unless @query.nil?), 
+      heading: (transform_heading @query.heading unless @query.nil?), 
       resource: (@query unless @query.nil?),
       title_error_sym: :title,
       heading_error_sym: :heading,
@@ -25,6 +25,7 @@
       radius_error_sym: :radius
     }
   %>
+
   <hr/>
   <%= render partial: 'templates/forms/queries/how_much', 
     locals: { 

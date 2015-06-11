@@ -147,6 +147,24 @@ i {
 	letter-spacing: 1px;
 }
 
+#error_explanation {
+  padding: $md-px;
+  text-align: center;
+
+  h1 {
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+}
+
+.home .field_with_errors {
+  display: inline-block;
+}
+
 form.registration {
   i.fa {
     margin-right: $md-px;
@@ -176,10 +194,6 @@ form.registration {
   input[type="submit"] {
     font-size: 1.75em;
     width: 33%;
-  }
-
-  .field_with_errors {
-    display: inline-block;
   }
 
   span.error {

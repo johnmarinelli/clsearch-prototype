@@ -18,9 +18,10 @@
 
 <div class="container full-width">
   <div class="row">
+    <%= devise_error_messages! %>
     <%= render 'templates/forms/queries/index_page_query_form' %>
   </div>
+  <%= link_to "Already registered, but didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
 </div>
 
-<%= link_to "Already registered, but didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
 <%= render 'templates/footer/footer' %>
