@@ -8,7 +8,8 @@ class LocationValidator < ActiveModel::Validator
     city = location['city']
 
     unless valid_location? zip, city
-      record.errors[:location] << 'Location Validator bad city'
+      record.errors[:location] << "Sorry, we couldn\'t find that city! \
+                                   Please try spelling the whole name out."
     end
   end
 

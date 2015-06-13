@@ -39,8 +39,15 @@ class User < ActiveRecord::Base
     queries.each do |q|
       tts.set_params q.attributes
       data = JSON.parse tts.search
-      QueryMailer.query_mail(self, data).deliver_later
+
+      first_time_searching = q.first_time_searching?
+      q.handle_first_time_searching if first_time_searching
+
+      QueryMailer.query_mail(self, data, first_time_searching).deliver_later
+
       q.last_searched = Time.now
+
+      self.increment! :query_count
     end
   end
 end

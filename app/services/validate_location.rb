@@ -8,5 +8,5 @@ def validate_location
     zipcode = ZipcodeReference.find_zipcode primary_location 
   end
 
-  error = 'bad city' if city.nil? and zipcode.nil?
+  error = 'bbbad city' if city.nil? and zipcode.nil?
 end

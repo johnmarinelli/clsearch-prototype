@@ -3,8 +3,25 @@ class QueryMailerPreview < ActionMailer::Preview
   def sample
     user = User.first
     tts = Search::APISearch.new
-    data = JSON.parse tts.search 
 
-    QueryMailer.query_mail user, data
+    q = Query.new({
+      :category_group => '',
+      :location => {
+        :zipcode => 'USA-85282'
+      }.to_json,
+      :radius => 50,
+      :user_id => 1,
+      :price_min => 0,
+      :price_max => 100,
+      :heading => ['xbox'].to_json,
+      :title => 'Tempe xbox',
+      :frequency => 'daily',
+      :last_searched => nil
+    })
+
+    tts.set_params q.attributes
+    data = JSON.parse tts.search
+
+    QueryMailer.query_mail user, data, Query.first
   end
 end

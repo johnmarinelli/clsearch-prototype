@@ -122,8 +122,7 @@ module Search
 
     # constructs 'n..' from :search_anchor
     def construct_timestamp_string(value)
-      # TODO: for testing purposes, comment this out
-      #@params[:timestamp] = "#{value.to_i}.."
+      @params[:timestamp] = "#{value.to_i}.."
     end
   end
 end

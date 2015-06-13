@@ -1,9 +1,10 @@
 class QueryMailer < ApplicationMailer
   default from: "john.marinelli.dev@gmail.com"
   
-  def query_mail(user, json)
+  def query_mail(user, json, first_time_searching)
     @posts = get_posts_from_json json
-    mail(to: user.email, subject: 'Your query results')
+    @first_time_searching = first_time_searching
+    mail to: user.email, subject: 'Your query results'
   end
 
   def get_posts_from_json(json)
@@ -17,9 +18,18 @@ class QueryMailer < ApplicationMailer
       price = post['price'] || 'N/A'
       body = post['body'] || 'No description found'
       url = post['external_url']
+      date_posted = Time.at(post['timestamp']).to_date
 
-      posts << { :img => img, :heading => heading, :location => location, :price => price, :body => body, :url => url }
-    end
+      posts << { 
+        :img => img, 
+        :heading => heading, 
+        :location => location, 
+        :date_posted => date_posted,
+        :price => price, 
+        :body => body, 
+        :url => url 
+      }
+    end unless json['postings'].nil?
 
     posts
   end
