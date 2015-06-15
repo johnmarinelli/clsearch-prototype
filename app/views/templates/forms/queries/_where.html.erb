@@ -1,6 +1,6 @@
 <div class="pure-control-group">
   <%= qf.label :location, 'City or Zip Code'%>
-  <%= qf.text_field :location, :value => location, :id => 'location'  %>
+  <%= qf.text_field :location, :value => location, :id => 'location', :placeholder => 'New York City'  %>
   <span class="error"><%= get_resource_error_message resource, location_error_sym %></span>
 </div>
 

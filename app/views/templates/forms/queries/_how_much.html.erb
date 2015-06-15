@@ -1,12 +1,12 @@
 <div class="pure-control-group">
   <%= qf.label :price_min %>
-  <%= qf.number_field :price_min %>
+  <%= qf.number_field :price_min, :min => 0 %>
   <span class="error"><%= get_resource_error_message resource, :"queries.price_min" %></span>
 </div>
 
 <div class="pure-control-group">
   <%= qf.label :price_max %>
-  <%= qf.number_field :price_max %>
+  <%= qf.number_field :price_max, :min => 0 %>
   <span class="error"><%= get_resource_error_message resource, :"queries.price_max" %></span>
 </div>
 

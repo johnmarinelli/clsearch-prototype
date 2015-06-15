@@ -33,6 +33,18 @@ $desktop: "(min-width: 1024px)";
   text-align: center;
 }
 
+.table {
+  display: table;
+
+  .table-row {
+    display: table-row;
+
+    .table-cell {
+      display: table-cell;
+    }
+  }
+}
+
 .bg-red {
   background-color: $red;
 }

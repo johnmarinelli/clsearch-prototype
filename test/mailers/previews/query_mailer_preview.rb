@@ -9,19 +9,19 @@ class QueryMailerPreview < ActionMailer::Preview
       :location => {
         :zipcode => 'USA-85282'
       }.to_json,
-      :radius => 50,
+      :radius => 10,
       :user_id => 1,
       :price_min => 0,
       :price_max => 100,
       :heading => ['xbox'].to_json,
       :title => 'Tempe xbox',
       :frequency => 'daily',
-      :last_searched => nil
+      :last_searched => Time.now - 2.weeks
     })
 
     tts.set_params q.attributes
     data = JSON.parse tts.search
 
-    QueryMailer.query_mail user, data, Query.first
+    QueryMailer.query_mail user, data, true
   end
 end

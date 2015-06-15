@@ -2,8 +2,8 @@ module QueryMailerHelper
   def first_time_searching_text(first_time)
     if first_time
       <<-eod
-        <h3>Since this is your first query result, we're giving you
-            results from <b>2 weeks ago (#{Date.today - 2.weeks})</b>.</h3>
+        <h3>Since this is your first query result and there is no last time searched value, 
+            we're giving you some recent results.</h3>
       eod
     else
       ''

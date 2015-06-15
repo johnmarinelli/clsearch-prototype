@@ -1,0 +1,26 @@
+@import "globals";
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.email-post {
+  img {
+    width: 200px;
+  }
+
+  .table-cell {
+    padding: 0px 5px;
+  }
+
+  .title-and-image {
+    margin-bottom: 20px;
+  }
+}
+
+@media #{$mobile} {
+  .email-post {
+    img {
+      width: 100%;
+    }
+  }
+}

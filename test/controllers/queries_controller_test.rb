@@ -51,6 +51,25 @@ class QueriesControllerTest < ActionController::TestCase
     assert_redirected_to :controller => 'dashboard', :action => 'index'
   end
 
+  test "should create query with no category group" do
+    assert_difference('Query.count') do 
+      post :create, {
+        :query => {
+          :title => 'functional_1',
+          :heading => 'kw1, kw2, kw3',
+          :category_group => '',
+          :location => 'Anaheim',
+          :radius => 5,
+          :price_min => 0,
+          :price_max => 100,
+          :frequency => 'daily'
+        }
+      }
+    end
+
+    assert_redirected_to :controller => 'dashboard', :action => 'index'
+  end
+
   test "no title should display a validation error" do
     post :create, {
       :query => {

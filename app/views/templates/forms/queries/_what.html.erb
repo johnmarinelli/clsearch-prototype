@@ -1,12 +1,12 @@
 <div class="pure-control-group">
   <%= qf.label :title, 'Name of your search' %>
-  <%= qf.text_field :title %>
+  <%= qf.text_field :title, :placeholder => 'My time-saving search' %>
   <span class="error"><%= get_resource_error_message resource, title_error_sym %></span>
 </div>
 
 <div class="pure-control-group">
   <%= qf.label :heading, 'Keywords' %>
-  <%= qf.text_field :heading, :value => heading %>
+  <%= qf.text_field :heading, :value => heading, :placeholder => 'apple, iphone, mac' %>
   <span class="error"><%= get_resource_error_message resource, heading_error_sym %></span>
 </div>
 

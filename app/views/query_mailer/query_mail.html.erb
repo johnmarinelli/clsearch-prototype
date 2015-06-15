@@ -1,21 +1,55 @@
 <!doctype html>
 <html>
   <head>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag 'query_mailer' %>
     <meta content="text/html' charset=UTF-8" http-equiv="Content-Type" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
   </head>
 
-  <body>
+  <body class="container">
     <%= first_time_searching_text(@first_time_searching).html_safe %>
     <% @posts.each do |post| %>
       <div class="email-post">
-        <h3><a href="<%= post[:url] %>"><%= post[:heading] %></a></h3>
-        <% unless post[:img].nil? %>
-          <a href="<%= post[:url] %>"><img src="<%= post[:img] %>" /></a>
-        <% end %>
-        <div class="location"><%= post[:location] %></div>
-        <div class="price"><%= number_to_currency post[:price] %></div>
-        <div class="date-posted"><%= post[:date_posted] %></div>
-        <p class="post-body"><%= post[:body].truncate 100, separator: /\s/ %></p>
+        <div class="row title-and-image">
+          <div class="col-md-4">
+            <h3><a href="<%= post[:url] %>"><%= post[:heading] %></a></h3>
+            <% unless post[:img].nil? %>
+              <a href="<%= post[:url] %>"><img src="<%= post[:img] %>" /></a>
+            <% end %>
+          </div>
+        </div> <!--row -->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="table">
+              <div class="table-row location">
+                <div class="table-cell">
+                  <b>Location</b>
+                </div>
+                <div class="table-cell">
+                  <%= post[:location] %>
+                </div>
+              </div>
+              <div class="table-row price">
+                <div class="table-cell">
+                  <b>Price</b>
+                </div>
+                <div class="table-cell">
+                  <%= number_to_currency post[:price] %>
+                </div>
+              </div>
+              <div class="table-row date-posted">
+                <div class="table-cell">
+                  <b>Date Posted</b>
+                </div>
+                <div class="table-cell">
+                  <%= post[:date_posted] %>
+                </div>
+              </div>
+            </div>
+          </div> <!-- col-md-4 -->
+        </div> <!-- row -->
+        <p class="post-body"><b>Seller description:</b> <%= post[:body].truncate 100, separator: /\s/ %></p>
         <hr/>
       </div>
     <% end %>
