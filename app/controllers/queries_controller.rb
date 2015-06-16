@@ -1,4 +1,5 @@
 class QueriesController < ApplicationController
+  include CategoryGroupsSetter
   before_action :set_category_groups, only: [:new, :create, :edit, :update]
   
   def new
@@ -60,10 +61,4 @@ class QueriesController < ApplicationController
   def query_params
     Search::Parameters.construct_parameters_from_input(params.require(:query))
   end
-
-  def set_category_groups
-    @category_groups = CategoryGroupReference.all
-    @category_groups.map { |g| g['code'] = '' if g['name'] == 'Uncategorized' }
-  end
-
 end

@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  include CategoryGroupsSetter
   before_action :set_category_groups, only: [:new, :create]
   before_action :update_sanitized_params, if: :devise_controller?
   layout 'home', only: [:new, :create]
