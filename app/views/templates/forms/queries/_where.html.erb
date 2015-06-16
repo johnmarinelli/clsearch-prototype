@@ -1,13 +1,11 @@
 <div class="pure-control-group">
   <%= qf.label :location, 'City or Zip Code'%>
   <%= qf.text_field :location, :value => location, :id => 'location', :placeholder => 'New York City'  %>
-  <span class="error"><%= get_resource_error_message resource, location_error_sym %></span>
+  <span id="location-error" class="error"><%= get_resource_error_message resource, location_error_sym %></span>
 </div>
 
-<div class="input-error" id="location-primary-error"></div>
-
 <script>
-$('#user_query_location').focusout(function() { 
+$('#location').focusout(function() { 
   var text = $(this).val();
   $.ajax({
     url: '/validate_location',
@@ -22,7 +20,7 @@ $('#user_query_location').focusout(function() {
       else {
         submitDisabled = false;
       }
-      $('#location-primary-error').html(errorText); 
+      $('#location-error').html(errorText); 
       $('input[name="commit"]').prop('disabled', submitDisabled)
     })
 })
@@ -31,7 +29,7 @@ $('#user_query_location').focusout(function() {
 
 <div class="pure-control-group">
   <%= qf.label :radius %>
-  <%= qf.select :radius, [5, 10, 20, 50, 'Anywhere'], include_blank: false %>
+  <%= qf.select :radius, [5, 10, 20, 50, ['Anywhere', '']], include_blank: false %>
   <span class="error"><%= get_resource_error_message resource, radius_error_sym %></span>
 </div>
 

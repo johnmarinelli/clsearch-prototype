@@ -49,7 +49,9 @@ class QueriesController < ApplicationController
       zipcode = ZipcodeReference.find_zipcode primary_location 
     end
 
-    error = 'validate_location bad city' if city.nil? and zipcode.nil?
+    error = 'We couldn\'t find that location!  
+             Please try typing out the whole 
+             city name or using a valid 5-digit zip code.' if city.nil? and zipcode.nil?
 
     render text: error
   end
