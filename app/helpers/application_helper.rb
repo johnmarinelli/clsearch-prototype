@@ -21,7 +21,7 @@ module ApplicationHelper
 
   def get_signout_link
     if user_signed_in?
-      link_to 'Sign Out', logout_path, :method => :delete 
+      link_to 'Logout', logout_path, :method => :delete 
     end
   end
 end

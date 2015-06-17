@@ -9,6 +9,16 @@ class Query < ActiveRecord::Base
     self.last_searched.nil?
   end
 
+  def is_scheduled?
+    hours_since_last_search = ((Time.now - self.last_searched) / 3600).round
+
+    if self.frequency == 'daily'
+      hours_since_last_search > 23
+    elsif self.frequency == 'weekly'
+      hours_since_last_search > 167
+    end
+  end
+
   def handle_first_time_searching
     # set first round of results to 2 weeks ago
     self.update :last_searched => DateTime.now - 2.weeks

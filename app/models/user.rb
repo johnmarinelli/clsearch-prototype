@@ -31,23 +31,27 @@ class User < ActiveRecord::Base
     self.queries.build if self.queries.empty?
     self
   end
-  
-  def do_scheduled_query
+
+  def do_scheduled_queries
     queries = self.queries
     tts = Search::APISearch.new
 
     queries.each do |q|
-      tts.set_params q.attributes
-      data = JSON.parse tts.search
-
-      first_time_searching = q.first_time_searching?
-      q.handle_first_time_searching if first_time_searching
-
-      QueryMailer.query_mail(self, data, first_time_searching).deliver_later
-
-      q.last_searched = Time.now
-
-      self.increment! :query_count
+      do_scheduled_query q if q.is_scheduled?
     end
+  end
+  
+  def do_scheduled_query(query)
+    tts.set_params query.attributes
+    data = JSON.parse tts.search
+
+    first_time_searching = query.first_time_searching?
+    query.handle_first_time_searching if first_time_searching
+
+    QueryMailer.query_mail(self, data, first_time_searching).deliver_later
+
+    query.last_searched = Time.now
+
+    self.increment! :query_count
   end
 end

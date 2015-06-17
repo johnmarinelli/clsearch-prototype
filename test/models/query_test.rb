@@ -13,4 +13,24 @@ class QueryTest < ActiveSupport::TestCase
     query = Query.new
     assert_not query.valid?
   end
+
+  test "Daily query is scheduled" do
+    query = queries(:third)
+    assert query.is_scheduled?, 'Daily query is not scheduled but should be'
+  end
+
+  test "Daily query is not scheduled" do
+    query = queries(:second)
+    assert !query.is_scheduled?, 'Daily query is scheduled but shouldn\'t be'
+  end
+
+  test "Weekly query is scheduled" do
+    query = queries(:first)
+    assert query.is_scheduled?, 'Weekly query is not scheduled but should be'
+  end
+
+  test "Weekly query is not scheduled" do
+    query = queries(:fourth)
+    assert !query.is_scheduled?, 'Weekly query is scheduled but shouldn\'t be'
+  end
 end
