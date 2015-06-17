@@ -9,7 +9,33 @@
 @media #{$mobile} {
   .container.login {
     width: 100%;
-    margin-top: 10vh;
+    margin-top: 3vh;
+    padding: 0px;
     background-color: transparent;
+
+    h2 {
+      text-align: center;
+    }
+
+    form label {
+      font-size: 1.25em;
+    }
+
+    form input {
+      height: $lg-px;
+    }
+
+    form input:not([type="checkbox"]) {
+      width: 100%;
+    }
+
+    form input[type="checkbox"] {
+      width: 50px;
+    }
+
+    a {
+      line-height: 2em;
+    }
   }
+
 }

@@ -1,5 +1,9 @@
 $sm-px:10px;
 $md-px: 25px;
+$lg-px: 50px;
+$xlg-px: 75px;
+
+$default-container-side-padding: 15px;
 
 $sm-px-font: 12px;
 $md-px-font: 24px;
@@ -59,4 +63,10 @@ $desktop: "(min-width: 1024px)";
 
 .pure-control-group {
   margin: 3% 0px;
+}
+
+@media #{$mobile} {
+  .no-padding-mobile {
+    padding: 0px;
+  }
 }

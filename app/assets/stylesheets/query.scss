@@ -1,6 +1,21 @@
-input#location-primary { 
-  text-transform: capitalize;
-}
 
-form input {
+@media #{$mobile} {
+  input[type="email"] {
+    width: 100%;
+    height: $xlg-px;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    margin-top: $sm-px;
+  }
+
+  legend {
+    font-size: 1.5em;
+  }
+
+  input, select, input[type="submit"] {
+    width: 100%;
+    height: $xlg-px;
+  }
 }

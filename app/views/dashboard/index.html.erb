@@ -1,10 +1,12 @@
-<div class="container dashboard">
+<div class="container dashboard no-padding-mobile">
   <h1> <%= @user.email %> </h1>
 
   <% if @user.has_queries? %>
     <% @user.queries.each do |query| %>
       <div class="query">
-        <%= query.title %>
+        <div class="title">
+          <%= query.title %>
+        </div>
         <div class="edit-destroy">
           <%= link_to '<i class="fa fa-edit"></i> Edit'.html_safe, edit_query_path(query) %>
           <%= link_to '<i class="fa fa-times"></i> Destroy'.html_safe, query_path(query), method: :delete, data: { confirm: 'Are you sure?' } %>

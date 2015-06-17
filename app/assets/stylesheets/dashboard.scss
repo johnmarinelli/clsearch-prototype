@@ -2,13 +2,41 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.query {
-  padding: $md-px;
-  background-color: $semi-transparent;
-  font-size: 1.25em;
-  margin: $sm-px 0px;
+.dashboard {
+  .query {
+    padding: $md-px;
+    background-color: $semi-transparent;
+    font-size: 1.25em;
+    margin: $sm-px 0px;
+    .title {
+      display: inline-block;
+    }
 
-  .edit-destroy {
-    float: right;
+    .edit-destroy {
+      display: inline-block;
+      margin-left: 70%;
+    }
+  }
+}
+
+@media #{$mobile} {
+  .dashboard {
+    h1 {
+      font-size: $md-px;
+    }
+    .query {
+      width: 100vw;
+      margin-left: -$default-container-side-padding;
+
+      .title {
+        display: block;
+      }
+
+      .edit-destroy {
+        display: block;
+        margin-left: 0px;
+        margin-top: $sm-px;
+      }
+    }
   }
 }
