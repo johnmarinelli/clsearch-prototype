@@ -6,7 +6,7 @@ module Common
       case page_name
       when 'HOME'
       when 'DASHBOARD'
-        raise Exception unless Common::session.has_content? 'Sign out'
+        raise Exception unless Common::session.has_content? 'Logout'
       end
     end
 
