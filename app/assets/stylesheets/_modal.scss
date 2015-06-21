@@ -4,17 +4,42 @@
   top: 0;
   z-index: $absolute-top-z;
   color: white;
-  background-color: $green;
   width: 33%;
   margin: 4% 33%;
   border-radius: $sm-px;
   text-align: center;
   padding: $sm-px;
+  cursor: default;
+
+  .message {
+    padding: $sm-px 0px;
+  }
+
+  .close {
+    opacity: .5;
+  }
 
   p {
     margin-bottom: 0px;
     display: inline;
     line-height: $md-px;
     font-size: 1.5em;
+  }
+}
+
+#flash-notice {
+  background-color: rgba(34, 181, 10, .93);
+}
+
+#flash-alert {
+  background-color: rgba(245, 3, 3, .93);
+}
+
+@media #{$mobile } {
+  .modal-alert {
+    width: 100%;
+    margin: 0px;
+    top: initial;
+    bottom: $md-px;
   }
 }

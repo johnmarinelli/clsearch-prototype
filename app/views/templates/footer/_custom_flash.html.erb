@@ -1,7 +1,26 @@
 <div id="flash-notice" class="modal-alert" <%= 'hidden' if flash[:notice].nil? %>>
-  <p><%= flash[:notice] %></p>
+  <button type="button" class="close">x</button>
+  <div class="message">
+    <p><%= flash[:notice] %></p>
+  </div>
 </div>
 
-<div id="alert-notice" class="modal-alert" <%= 'hidden' if flash[:alert].nil? %>>
-  <p><%= flash[:alert] %></p>
+<div id="flash-alert" class="modal-alert" <%= 'hidden' if flash[:alert].nil? %>>
+  <button type="button" class="close">x</button>
+  <div class="message">
+    <p><%= flash[:alert] %></p>
+  </div>
 </div>
+
+<div id="flash-alert" class="modal-alert"> 
+  <button type="button" class="close">x</button>
+  <div class="message">
+    <p>An email has been sent to your address.  Please follow the link to confirm your account. </p>
+  </div>
+</div>
+<script>
+  $('.modal-alert').click(function() {
+    $(this).fadeOut();
+  })
+</script>
+
