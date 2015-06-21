@@ -4,18 +4,15 @@ module Registration
   include Common
 
   class RegistrationActions < Common::Actions
-    def register(email, password='password')
-      Common::session.find(:css, '#user_email').set email
-      Common::session.find(:css, '#user_password').set password
-      Common::session.find(:css, '#user_password_confirmation').set password
+    def register(email)
+      Common::session.first(:css, '#user_email').set email
     end
 
     def fill_in_registration_form(credentials)
       rows = credentials.rows_hash
       email = rows['Email']
-      password = rows['Password']
 
-      register email, password
+      register email
     end
 
     def confirm_last_registration
