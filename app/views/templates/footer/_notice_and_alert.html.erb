@@ -1,2 +1,4 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+
+<%= render :partial => 'templates/footer/custom_flash', :flash => { :notice => notice, :alert => alert } %>

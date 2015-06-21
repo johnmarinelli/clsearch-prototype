@@ -1,0 +1,20 @@
+
+.modal-alert {
+  position: fixed;
+  top: 0;
+  z-index: $absolute-top-z;
+  color: white;
+  background-color: $green;
+  width: 33%;
+  margin: 4% 33%;
+  border-radius: $sm-px;
+  text-align: center;
+  padding: $sm-px;
+
+  p {
+    margin-bottom: 0px;
+    display: inline;
+    line-height: $md-px;
+    font-size: 1.5em;
+  }
+}

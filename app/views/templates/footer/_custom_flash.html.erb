@@ -1,0 +1,7 @@
+<div id="flash-notice" class="modal-alert" <%= 'hidden' if flash[:notice].nil? %>>
+  <p><%= flash[:notice] %></p>
+</div>
+
+<div id="alert-notice" class="modal-alert" <%= 'hidden' if flash[:alert].nil? %>>
+  <p><%= flash[:alert] %></p>
+</div>

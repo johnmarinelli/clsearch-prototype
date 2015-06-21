@@ -11,10 +11,14 @@ $lg-px-font: 60px;
 
 $semi-transparent: rgba(0, 0, 0, .13);
 $red: #e80000;
+$green: rgb(31, 178, 7);
 
 $mobile: "(min-width: 320px) and (max-width: 767px)";
 $tablet: "(min-width: 768px) and (max-width: 1023px)";
 $desktop: "(min-width: 1024px)";
+
+$absolute-top-z: 9999;
+
 
 .top-margin {
   height: 50px;
