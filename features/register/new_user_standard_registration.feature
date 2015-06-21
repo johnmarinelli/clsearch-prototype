@@ -11,5 +11,5 @@ Feature: New user registration
     When she clicks on REGISTER
     Then she fills out the registration form with the following information
       | Email    | test4@email.com |
-    When she clicks on SIGN UP
-    Then she sees a confirmation popup telling her to confirm via email
+    When she clicks on SUBMIT
+    Then she sees a popup with a message confirming her subscription
