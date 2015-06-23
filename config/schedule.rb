@@ -22,3 +22,11 @@
 every 24.hours do
   command "cd /home/john/Documents/ruby/rails/clsearch_prototype/script && ./cronfile.sh", :environment => 'development'
 end
+
+every 24.hours do
+  command "cd /home/john/Documents/ruby/rails/clsearch_prototype/script && ./cronfile.sh", :environment => 'production'
+end
+
+every 1.minute do
+  puts Time.now, :environment => 'production'
+end
