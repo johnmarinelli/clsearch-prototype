@@ -52,6 +52,6 @@ class User < ActiveRecord::Base
 
     query.last_searched = Time.now
 
-    self.increment! :query_count
+    self.increment! :sent_query_count
   end
 end
