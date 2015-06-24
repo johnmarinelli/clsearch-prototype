@@ -63,7 +63,7 @@
     <div class="fields">
       <div class="pure-control-group">
         <%= f.label :email %>
-        <%= f.email_field :email %> 
+        <%= f.email_field :email, id: 'user_email_bottom' %>
         <span class="error"><%= get_resource_error_message resource, :email %></span>
       </div>
     </div>

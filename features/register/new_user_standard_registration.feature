@@ -26,5 +26,5 @@ Feature: New user registration
       | Price max | 150             |
       | Frequency | Daily           |
       | Email     | test6@email.com |
-    When she clicks on SUBMIT
+    When she clicks on SIGN UP
     Then she sees a popup with a message confirming her subscription

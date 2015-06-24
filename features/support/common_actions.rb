@@ -42,6 +42,8 @@ module Common
         Common::session.visit '/queries/new'
       when /submit/i
         Common::session.click_button 'Submit'
+      when /sign up/i
+        Common::session.click_button 'Sign up'
       when /delete query/i
         Queries::actions.click_on target
       else 

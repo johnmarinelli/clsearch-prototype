@@ -4,15 +4,14 @@ module Registration
   include Common
 
   class RegistrationActions < Common::Actions
-    def register(email)
-      Common::session.first(:css, '#user_email').set email
+    def make_unique_email(email)
+      email.gsub('@', Time.now.to_i.to_s + '@')
     end
 
     def fill_in_top_registration_form(credentials)
       rows = credentials.rows_hash
-      email = rows['Email']
-
-      register email
+      email = make_unique_email rows['Email']
+      Common::session.first(:css, '#user_email_top').set email
     end
 
     def fill_in_bottom_registration_form(credentials)
@@ -25,7 +24,7 @@ module Registration
       price_min = rows['Price min']
       price_max = rows['Price max']
       frequency = rows['Frequency']
-      email = rows['Email'].gsub('@', Time.now.to_i.to_s + '@')
+      email = make_unique_email rows['Email']
 
       Common::session.first(:css, '#user_queries_attributes_0_title').set title
       Common::session.first(:css, '#user_queries_attributes_0_heading').set keywords
@@ -34,7 +33,7 @@ module Registration
       Common::session.first(:css, '#user_queries_attributes_0_radius').set radius
       Common::session.first(:css, '#user_queries_attributes_0_price_min').set price_min
       Common::session.choose frequency
-      Common::session.all(:css, '#user_email')[1].set email
+      Common::session.first(:css, '#user_email_bottom').set email
     end
 
     def confirm_last_registration
