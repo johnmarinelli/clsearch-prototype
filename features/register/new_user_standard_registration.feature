@@ -9,7 +9,22 @@ Feature: New user registration
 
   Scenario: User registers with email only
     When she clicks on REGISTER
-    Then she fills out the registration form with the following information
-      | Email    | test4@email.com |
+    Then she fills out the top registration form with the following information
+      | Email    | test6@email.com |
+    When she clicks on SUBMIT
+    Then she sees a popup with a message confirming her subscription
+
+  Scenario: User registers with email and queries
+    When she clicks on REGISTER
+    Then she fills out the bottom registration form with the following information
+      | Title     | My search       |
+      | Keywords  | xbox            |
+      | Category  | Uncategorized   |
+      | Location  | 85282           |
+      | Radius    | 5               |
+      | Price min | 0               |
+      | Price max | 150             |
+      | Frequency | Daily           |
+      | Email     | test6@email.com |
     When she clicks on SUBMIT
     Then she sees a popup with a message confirming her subscription

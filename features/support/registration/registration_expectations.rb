@@ -5,7 +5,7 @@ module Registration
 
   class RegistrationExpectations < Common::Expectations
     def has_confirmed_message_in_popup
-      elem = Common::session.find '#flash-alert'
+      elem = Common::session.find '#flash-notice'
       str = /email has been sent to your address/
       raise Exception if (str =~ elem.text).nil?
     end
