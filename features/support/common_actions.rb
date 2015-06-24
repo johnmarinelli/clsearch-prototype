@@ -51,8 +51,10 @@ module Common
 
     def fill_in_form(form, creds)
       case form
-      when /registration/i
-        Registration::actions.fill_in_registration_form creds
+      when /top registration/i
+        Registration::actions.fill_in_top_registration_form creds
+      when /bottom registration/i
+        Registration::actions.fill_in_bottom_registration_form creds
       when /login/i
         Login::actions.fill_in_login_form creds
       else 

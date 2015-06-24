@@ -4,7 +4,7 @@ module Search
       users = User.all
 
       users.each do |user|
-        user.do_scheduled_query
+        user.do_scheduled_queries
       end
     end
   end

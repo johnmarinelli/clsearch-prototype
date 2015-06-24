@@ -34,14 +34,14 @@ class User < ActiveRecord::Base
 
   def do_scheduled_queries
     queries = self.queries
-    tts = Search::APISearch.new
-
     queries.each do |q|
-      do_scheduled_query q if q.is_scheduled?
+      do_scheduled_query q  if q.is_scheduled?
     end
   end
   
   def do_scheduled_query(query)
+    tts = Search::APISearch.new
+
     tts.set_params query.attributes
     data = JSON.parse tts.search
 
