@@ -43,7 +43,7 @@ module Search
       
       @parameters = Search::Parameters.new
 
-      @api_url = "http://#{sub}.3taps.com?"
+      @api_url = "https://#{sub}.3taps.com?"
       append_get_vars @api_url, {'auth_token' => @auth_token}
     end
 
