@@ -71,7 +71,7 @@ fifth:
   category_group: ''
   location: '{"zipcode": "USA-85282" }'
   radius: 50
-  user_id: 3
+  user_id: 5
   frequency: 'daily'
   last_searched: <%= Time.now - 365.days %>
 

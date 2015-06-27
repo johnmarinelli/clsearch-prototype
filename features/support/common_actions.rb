@@ -44,6 +44,10 @@ module Common
         Common::session.click_button 'Submit'
       when /sign up/i
         Common::session.click_button 'Sign up'
+      when /edit profile information/i
+        Common::session.click_link 'Edit Profile Information'
+      when /update/i
+        Common::session.click_button 'Update'
       when /delete query/i
         Queries::actions.click_on target
       else 
@@ -59,6 +63,8 @@ module Common
         Registration::actions.fill_in_bottom_registration_form creds
       when /login/i
         Login::actions.fill_in_login_form creds
+      when /edit profile/i
+        UserProfile::actions.fill_in_edit_profile_form creds
       else 
         puts "Couldn\'t find fill_in_form#{target}"
       end

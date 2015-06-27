@@ -18,7 +18,7 @@ Then(/^she sees her ([^"]*)$/) do |page|
   Common::expectations.sees_page? page
 end
 
-When(/^she fills out the (bottom registration|top registration|login) form with the following information$/) do |form, creds|
+When(/^she fills out the (edit profile|bottom registration|top registration|login) form with the following information$/) do |form, creds|
   Common::actions.fill_in_form form, creds
 end
 
