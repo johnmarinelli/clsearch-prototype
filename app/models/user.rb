@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  private:
+  private
   
   def do_scheduled_query(query)
     tts = Search::APISearch.new
