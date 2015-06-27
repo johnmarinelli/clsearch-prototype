@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
     end
   end
   
+  private:
+  
   def do_scheduled_query(query)
     tts = Search::APISearch.new
 
@@ -48,7 +50,7 @@ class User < ActiveRecord::Base
     first_time_searching = query.first_time_searching?
     query.handle_first_time_searching if first_time_searching
 
-    QueryMailer.query_mail(self, data, first_time_searching).deliver_later
+    QueryMailer.query_mail(self, data, first_time_searching).deliver
 
     query.last_searched = Time.now
 

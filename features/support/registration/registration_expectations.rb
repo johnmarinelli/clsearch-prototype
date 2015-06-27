@@ -9,6 +9,10 @@ module Registration
       str = /sent to your email address/
       raise Exception if (str =~ elem.text).nil?
     end
+
+    def has_error_message(message)
+    end
+
   end
 
   @@registration_expectations = RegistrationExpectations.new

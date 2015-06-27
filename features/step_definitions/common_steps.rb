@@ -28,3 +28,6 @@ Given(/^that (?:she|the user) (is|is not) logged in$/) do |logged_in|
   end
 end
 
+Then(/^she doesn't do anything$/) do
+end
+

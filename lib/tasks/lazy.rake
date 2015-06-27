@@ -1,4 +1,4 @@
-namespace :temp do
+namespace :lazy do
   desc "Deletes last user"
   task delete_last_user: :environment do
     User.last.destroy
