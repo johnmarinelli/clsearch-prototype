@@ -60,3 +60,18 @@ fourth:
   user_id: 4 
   frequency: 'weekly'
   last_searched: <%= Time.now - 1.day %>
+
+fifth:
+  id: 5
+  title: 'xbox'
+  anchor: 123455678
+  heading: '["xbox"]'
+  price_min: 0
+  price_max: 100
+  category_group: ''
+  location: '{"zipcode": "USA-85282" }'
+  radius: 50
+  user_id: 3
+  frequency: 'daily'
+  last_searched: <%= Time.now - 365.days %>
+

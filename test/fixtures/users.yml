@@ -20,3 +20,7 @@ three:
   email: test3@email.com
   confirmed_at: <%= Time.now %>
 
+four:
+  id: 5
+  email: <%= ENV['MY_EMAIL'] %>
+  confirmed_at: <%= Time.now %>
