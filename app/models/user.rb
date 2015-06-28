@@ -47,13 +47,21 @@ class User < ActiveRecord::Base
     tts.set_params query.attributes
     data = JSON.parse tts.search
 
-    first_time_searching = query.first_time_searching?
-    query.handle_first_time_searching if first_time_searching
+    # don't send email if data is empty
+    if data['postings'].empty?
+      Rails.logger.info "No data for #{query.title}, user #{query.user.email}"
+      return
+    else
+      first_time_searching = query.first_time_searching?
+      query.handle_first_time_searching if first_time_searching
+      
+      query_title = query.title
 
-    QueryMailer.query_mail(self, data, first_time_searching).deliver
+      QueryMailer.query_mail(self, data, first_time_searching, query_title).deliver_later
 
-    query.last_searched = Time.now
+      query.last_searched = Time.now
 
-    self.increment! :sent_query_count
+      self.increment! :sent_query_count
+    end
   end
 end

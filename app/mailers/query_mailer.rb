@@ -1,10 +1,10 @@
 class QueryMailer < ApplicationMailer
   default from: "john.marinelli.dev@gmail.com"
   
-  def query_mail(user, json, first_time_searching)
+  def query_mail(user, json, first_time_searching, title)
     @posts = get_posts_from_json json
     @first_time_searching = first_time_searching
-    mail to: user.email, subject: 'Your query results'
+    mail to: user.email, subject: "Search results from omnisearch.com: '#{title}'"
   end
 
   def get_posts_from_json(json)
