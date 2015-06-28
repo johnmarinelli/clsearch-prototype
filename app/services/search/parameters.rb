@@ -55,7 +55,7 @@ module Search
       # location
       primary_location = params[:location].strip
 
-      # regex matches if its a zipcode.  
+      # regex matches if its a zipcode
       if primary_location.match(/^\d{5}$/).nil? 
         city = CityReference.find_city primary_location 
       else

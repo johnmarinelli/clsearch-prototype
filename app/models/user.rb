@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
       
       query_title = query.title
 
-      QueryMailer.query_mail(self, data, first_time_searching, query_title).deliver_later
+      QueryMailer.query_mail(self, data, first_time_searching, query_title).deliver_now
 
       query.last_searched = Time.now
 
