@@ -7,6 +7,6 @@ class QueryMailerTest < ActionMailer::TestCase
     tts.set_params q.attributes
     data = JSON.parse tts.search
     
-    email = QueryMailer.query_mail(users(:four), data, false).deliver_now
+    email = QueryMailer.query_mail(users(:four), data, false, q.title).deliver_now
   end
 end

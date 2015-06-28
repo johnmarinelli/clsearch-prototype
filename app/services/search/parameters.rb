@@ -55,13 +55,15 @@ module Search
       # location
       primary_location = params[:location].strip
 
+      # regex matches if its a zipcode.  
       if primary_location.match(/^\d{5}$/).nil? 
         city = CityReference.find_city primary_location 
       else
         zipcode = ZipcodeReference.find_zipcode primary_location 
       end
 
-      radius = params[:radius]
+      # radius
+      radius = params[:radius] =~ /anywhere/i ? '' : params[:radius]
 
       # price
       price_min = params[:price_min]

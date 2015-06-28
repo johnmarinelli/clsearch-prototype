@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
     # don't send email if data is empty
     if data['postings'].empty?
-      Rails.logger.info "No data for #{query.title}, user #{query.user.email}"
+      puts "No data for #{query.title}, user #{query.user.email}"
       return
     else
       first_time_searching = query.first_time_searching?
