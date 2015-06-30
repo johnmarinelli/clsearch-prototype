@@ -10,17 +10,17 @@ module Queries
 
     def fill_in_title_field(title)
       @query_params[:title] = title
-      Common::session.find(:css, '#title').set title
+      Common::session.find(:css, '#query_title').set title
     end
 
     def fill_in_keywords(keywords)
       @query_params[:heading] = keywords.split(', ')
-      Common::session.find(:css, '#keywords').set keywords
+      Common::session.find(:css, '#query_heading').set keywords
     end
 
     def fill_in_category(category)
       @query_params[:category_group] = category
-      Common::session.select(category, :from => 'category')
+      Common::session.select(category, :from => 'query_category_group')
     end
 
     def fill_in_location(location)
@@ -31,22 +31,22 @@ module Queries
         @query_params[:location][:zipcode] = location
       end
 
-      Common::session.find(:css, '#location-primary').set location
+      Common::session.find(:css, '#location').set location
     end
 
     def fill_in_distance(distance)
       @query_params[:radius] = distance
-      Common::session.select(distance, :from => 'radius')
+      Common::session.select(distance, :from => 'query_radius')
     end
 
     def fill_in_price_min(price_min)
       @query_params[:price_min] = price_min
-      Common::session.find(:css, '#price_min').set price_min
+      Common::session.find(:css, '#query_price_min').set price_min
     end
 
     def fill_in_price_max(price_max)
       @query_params[:price_max] = price_max
-      Common::session.find(:css, '#price_max').set price_max
+      Common::session.find(:css, '#query_price_max').set price_max
     end
 
     def fill_in_frequency(frequency)
@@ -63,6 +63,8 @@ module Queries
       case target
       when /delete query/i
         Common::session.first(:link, 'Destroy').click
+      when /save query/i
+        Common::session.click_button 'Save Query'
       end
     end
   end

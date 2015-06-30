@@ -48,6 +48,8 @@ module Common
         Common::session.click_link 'Edit Profile Information'
       when /update/i
         Common::session.click_button 'Update'
+      when /save query/i
+        Queries::actions.click_on target
       when /delete query/i
         Queries::actions.click_on target
       else 

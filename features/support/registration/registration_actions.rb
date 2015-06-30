@@ -5,12 +5,12 @@ module Registration
 
   class RegistrationActions < Common::Actions
     def make_unique_email(email)
-      email.gsub('@', Time.now.to_i.to_s + '@')
+      email.gsub('@', Time.now.to_i.to_s + '@') 
     end
 
-    def fill_in_top_registration_form(credentials)
+    def fill_in_top_registration_form(credentials, unique_email = true)
       rows = credentials.rows_hash
-      email = make_unique_email rows['Email']
+      email = unique_email ? make_unique_email(rows['Email']) : rows['Email']
       Common::session.first(:css, '#user_email_top').set email
     end
 
@@ -24,7 +24,7 @@ module Registration
       price_min = rows['Price min']
       price_max = rows['Price max']
       frequency = rows['Frequency']
-      email = make_unique_email rows['Email']
+      email = make_unique_email rows['Email'] unless rows['Email'].nil?
 
       Common::session.first(:css, '#user_queries_attributes_0_title').set title
       Common::session.first(:css, '#user_queries_attributes_0_heading').set keywords

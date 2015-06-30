@@ -9,6 +9,7 @@ class QueriesController < ApplicationController
     @query = Query.new query_params
     @query[:user_id] = current_user.id
     if @query.save
+      flash[:notice] = "Successfully created #{@query.title}."
       redirect_to '/' and return
     else
       render 'new'
