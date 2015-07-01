@@ -38,23 +38,12 @@ class QueriesController < ApplicationController
     @query = Query.find(params[:id])
     @query.destroy
 
+    flash[:notice] = "Successfully deleted #{@query.title}."
     redirect_to '/' and return
   end
 
   def validate_location
-    error = 'none'
-    primary_location = params[:location_input].strip
-
-    if primary_location.match(/^\d{5}$/).nil? 
-      city = CityReference.find_city primary_location 
-    else
-      zipcode = ZipcodeReference.find_zipcode primary_location 
-    end
-
-    error = 'We couldn\'t find that location!  
-             Please try typing out the whole 
-             city name or using a valid 5-digit zip code.' if city.nil? and zipcode.nil?
-
+    error = Reference::LocationReference.validate_location params[:location_input].strip
     render text: error
   end
 

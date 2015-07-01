@@ -37,6 +37,31 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_response :redirect
   end
 
+  test "should create query given no location" do
+    assert_difference('Query.count') do 
+      post :create, {
+        :user => {
+          :email => 'email@email.com',
+          'queries_attributes' => { 
+            '0' =>
+            {
+              :title => 'from home page',
+              :heading => 'kw1, kw2, kw3',
+              :category_group => 'AAAA',
+              :location => '',
+              :radius => 5,
+              :price_min => 0,
+              :price_max => 100,
+              :frequency => 'daily',
+            }
+          }
+        }
+      }
+    end
+
+    assert_response :redirect
+  end
+
   test "should create a user" do
     assert_difference('User.count') do 
       post :create, {

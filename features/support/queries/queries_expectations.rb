@@ -14,6 +14,12 @@ module Queries
       raise Exception if (str =~ elem.text).nil?
     end
 
+    def has_confirmed_deletion_message_in_popup
+      elem = Common::session.first '#flash-notice'
+      str = /Successfully deleted/
+      raise Exception if (str =~ elem.text).nil?
+    end
+
   end
 
   @@query_expectations = QueryExpectations.new

@@ -57,6 +57,16 @@ begin
       cmd = "cucumber --name \"#{line}\""
       exec cmd
     end
+
+    desc "Run all features"
+    task all_features: :environment do
+      system 'rake cucumber:single_feature file=features/login/existing_user_standard_login.feature', out: $stdout
+      system 'rake cucumber:single_feature file=features/register/new_user_bad_registration.feature', out: $stdout
+      system 'rake cucumber:single_feature file=features/register/new_user_standard_registration.feature', out: $stdout
+      system 'rake cucumber:single_feature file=features/queries/create_query/new_query.feature', out: $stdout
+      system 'rake cucumber:single_feature file=features/queries/delete_query/delete_query.feature', out: $stdout
+      system 'rake cucumber:single_feature file=features/user/user_change_email.feature', out: $stdout
+    end
   end
   desc 'Alias for cucumber:ok'
   task :cucumber => 'cucumber:ok'

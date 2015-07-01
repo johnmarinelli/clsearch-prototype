@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-  get 'queries/show'
-  get 'queries/new'
+  #get 'queries/show'
+  #get 'queries/new'
 
-  post '/queries/new' => 'queries#create'
-  patch '/queries/:id/edit' => 'queries#update'
-  resources :queries
+  #post '/queries/new' => 'queries#create'
+  #patch '/queries/:id/edit' => 'queries#update'
 
   devise_for :users, :controllers => { :confirmations => 'confirmations', 
                                        :registrations => 'registrations' } 
+
+  authenticate :user do
+    resources :queries
+    post '/queries/new' => 'queries#create'
+  end
+
   # custom routes for devise.
   # set default scope to :user.
   devise_scope :user do

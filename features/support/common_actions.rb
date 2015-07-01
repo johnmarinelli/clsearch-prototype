@@ -30,6 +30,10 @@ module Common
       end
     end
 
+    def click_on_javascript_popup_okay
+      Common::session.accept_alert 'Are you sure?'
+    end
+
     def click_on(target)
       case target
       when /login/i

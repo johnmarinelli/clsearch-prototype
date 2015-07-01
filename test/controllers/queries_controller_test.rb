@@ -70,6 +70,25 @@ class QueriesControllerTest < ActionController::TestCase
     assert_redirected_to :controller => 'dashboard', :action => 'index'
   end
 
+  test "should create query with no location" do
+    assert_difference('Query.count') do 
+      post :create, {
+        :query => {
+          :title => 'functional_1',
+          :heading => 'kw1, kw2, kw3',
+          :category_group => 'AAAA',
+          :location => '',
+          :radius => 5,
+          :price_min => 0,
+          :price_max => 100,
+          :frequency => 'daily'
+        }
+      }
+    end
+
+    assert_redirected_to :controller => 'dashboard', :action => 'index'
+  end
+
   test "no title should display a validation error" do
     post :create, {
       :query => {
@@ -83,22 +102,6 @@ class QueriesControllerTest < ActionController::TestCase
 
     assert_select '#error-explanation'
   end
-
-
-  test "no category_group should display a validation error" do
-    post :create, {
-      :query => {
-        :title => 'title',
-        :heading => 'kw1, kw2, kw3',
-        :category_group => '',
-        :location => '0xdeadbeef',
-        :frequency => 'daily'
-      }
-    }
-
-    assert_select '#error-explanation'
-  end
-
 
   test "no frequency should display a validation error" do
     post :create, {
