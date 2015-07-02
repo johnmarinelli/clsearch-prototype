@@ -69,6 +69,10 @@ $absolute-top-z: 9999;
   margin: 3% 0px;
 }
 
+.lobster-font {
+  font-family: 'Lobster', cursive;
+}
+
 @media #{$mobile} {
   .no-padding-mobile {
     padding: 0px;

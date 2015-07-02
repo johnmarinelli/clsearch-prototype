@@ -1,5 +1,5 @@
 class QueryMailer < ApplicationMailer
-  default from: "john.marinelli.dev@gmail.com"
+  default from: "searcher@mysweetdeal.com"
   
   def query_mail(user, json, first_time_searching, title)
     @posts = get_posts_from_json json

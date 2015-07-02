@@ -91,6 +91,7 @@ a:after {
 .navbar-default .navbar-brand {
   font-weight: bold;
   color: white;
+  font-family: 'Lobster', cursive;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -118,13 +119,14 @@ i {
 
 /* HeaderWrap */
 #headerwrap {
-  background: url(coffee-cup-bed-bedroom.jpeg) no-repeat center top;
+  /*background: url(apple-iphone-smartphone-desk.jpg) no-repeat center top; */
   /*background-color: #3498db; */
+  background-color: #34b5db;
   margin-top: -20px;
-  padding-top:200px;
+  padding-top: 100px;
   background-attachment: relative;
   background-position: center center;
-  min-height: 650px;
+  min-height: 550px;
   width: 100%;
 
   -webkit-background-size: 100%;
@@ -142,9 +144,10 @@ i {
 	margin-top: 60px;
 	margin-bottom: 15px;
 	color: white;
-	font-size: 5em;
-	font-weight: 300;
+	font-size: 3em;
+	font-weight: 600;
 	letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 #error_explanation {
@@ -202,6 +205,29 @@ form.registration {
     color: red;
   }
 }
+#headerwrap {
+  text-align: center;
+
+  .call-to-action-blurb {
+    font-size: 1.25em;
+  }
+
+  .call-to-action-small-blurb {
+    font-size: 1.1em;
+  }
+
+  #user_email_top {
+    width: 25%;
+    margin-bottom: $sm-px;
+    height: $lg-px;
+  }
+
+  #email-only input[type='submit'] {
+    width: 25%;
+    display: block;
+    margin: auto;
+  }
+}
 
 @media #{$mobile} {
   #headerwrap {
@@ -212,10 +238,6 @@ form.registration {
 
     h1 {
       font-size: 3em;
-    }
-
-    .call-to-action-blurb {
-      font-size: 1.25em;
     }
 
     input[type="email"] {
