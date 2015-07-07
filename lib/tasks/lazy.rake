@@ -12,7 +12,7 @@ namespace :lazy do
     tts.set_params q.attributes
     data = JSON.parse tts.search
 
-    email = QueryMailer.query_mail(u, data, false).deliver_now
+    email = QueryMailer.query_mail(u, data, false, 'title').deliver_now
   end
 
 end
