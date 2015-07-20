@@ -39,4 +39,5 @@ Rails.application.routes.draw do
 
   # Misc. static pages
   get '/thanks' => 'static_pages#thanks'
+  get '/privacy-policy' => 'static_pages#privacy_policy'
 end
